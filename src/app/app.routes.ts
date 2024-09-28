@@ -1,6 +1,6 @@
-import { Routes } from '@angular/router';
-import { CoursedetailsComponent } from '../pages/coursedetails/coursedetails.component';
-import { LandingpageComponent } from '../pages/landingpage/landingpage.component';
+import { Routes } from '../../node_modules/@angular/router/index';
+import { CoursedetailsComponent } from './components/coursedetails/coursedetails.component';
+import { LandingpageComponent } from './pages/landingpage/landingpage.component';
 
 export const routes: Routes = [
 

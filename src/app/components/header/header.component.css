@@ -108,3 +108,6 @@
 .subcat-name:hover {
   font-weight: 600;
 }
+p{
+  cursor: pointer;
+}

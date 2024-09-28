@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import { LandingpageComponent } from '../pages/landingpage/landingpage.component';
+import { Component } from "@angular/core";
+import { RouterOutlet } from "@angular/router";
+import { LandingpageComponent } from "./pages/landingpage/landingpage.component";
+
 
 @Component({
   selector: 'app-root',

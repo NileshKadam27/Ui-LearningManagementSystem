@@ -160,4 +160,9 @@ export class HeaderComponent implements OnInit {
   fetchData() {
     this.productservice.getData().subscribe((data) => {});
   }
+
+  login(){
+    console.log("hi");
+    
+  }
 }
