@@ -1,0 +1,39 @@
+<div class="header">
+  <div class="logo">
+    <h1>LMS</h1>
+    <p>Developing Professionals</p>
+  </div>
+
+  <div class="courselink">
+    <button (mouseover)="mouseenter()" class="btn">
+      <i class="fa-solid fa-list"></i> Courses
+    </button>
+    <div class="navlinks">
+      <p>About us</p>
+      <p>Learnings</p>
+      <p>Instructor</p>
+      <p>Training</p>
+      <p>Register</p>
+      <p>Login</p>
+
+    </div>
+  </div>
+</div>
+
+<div class="hover_view" (mouseover)="mouseenter()" (mouseleave)="onMouseLeave()"*ngIf="showCategories">
+  <div class="category">
+    @for(cat of details;track cat.category) {
+    <div (mouseover)="getSubCategory(cat.category)" class="cat-list">
+      {{ cat.category }}
+    </div>
+    }
+  </div>
+
+  <div class="sub-categoryview">
+    <ul class="subcat-list">
+      @for(subcat of selctedSubcategory;track subcat.id) {
+      <li (click)="navigate()" class="subcat-name">{{ subcat.name }}</li>
+      }
+    </ul>
+  </div>
+</div>
