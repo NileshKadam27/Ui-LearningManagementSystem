@@ -37,11 +37,13 @@
 }
 
 .navlinks {
-  width: 60%;
+  width: fit-content;
   display: flex;
   column-gap: 45px;
   font-size: larger;
   font-weight: 400;
+  align-items: center;
+  padding: 0px 15px;
 }
 
 .cat-list {
@@ -110,4 +112,5 @@
 }
 p{
   cursor: pointer;
+  
 }

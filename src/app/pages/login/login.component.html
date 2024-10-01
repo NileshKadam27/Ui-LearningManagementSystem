@@ -1,0 +1,16 @@
+<div class="container">
+
+    <form class="form" [formGroup]="loginForm">
+
+        <h1>Login</h1>
+        
+
+        <input type="text" placeholder="Enter Username" [formControl]="username">
+
+        <input type="password" placeholder="Enter Password" [formControl]="password">
+
+        <button class="btn" type="button" (click)="login()">Login</button>
+
+    </form>
+
+</div>

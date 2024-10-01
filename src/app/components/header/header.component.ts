@@ -1,7 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { ProductserviceService } from '../../services/product.service';
+
 
 @Component({
   selector: 'app-header',
@@ -14,6 +15,7 @@ export class HeaderComponent implements OnInit {
   showCategories: boolean = false;
   showCourses: boolean = false;
 
+  @Input() isLogin:boolean=false;
   constructor(
     private route: Router,
     private productservice: ProductserviceService
@@ -162,7 +164,7 @@ export class HeaderComponent implements OnInit {
   }
 
   login(){
-    console.log("hi");
+    this.route.navigate(["/login"]);
     
   }
 }

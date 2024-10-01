@@ -7,9 +7,7 @@ import { httpInterceptor } from '../shared/http.interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes),
-    provideHttpClient(withInterceptors([
-      httpInterceptor
-    ])),
+    provideHttpClient(),
 
 
   ]

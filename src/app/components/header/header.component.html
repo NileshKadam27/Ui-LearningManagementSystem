@@ -13,8 +13,16 @@
       <p>Learnings</p>
       <p>Instructor</p>
       <p>Training</p>
-      <p>Register</p>
-      <p (click)="login()">Login</p>
+
+      @if( isLogin){
+        <p>Register</p>
+        <p (click)="login()">Login</p>
+      }@else{
+        <p> My Courses
+        </p>
+        <p><i class="fa fa-user-circle fa-2x" aria-hidden="true"></i></p>
+        
+      }
 
     </div>
   </div>
@@ -31,7 +39,8 @@
 
   <div class="sub-categoryview">
     <ul class="subcat-list">
-      @for(subcat of selctedSubcategory;track subcat.id) {
+      @for(subcat of selctedSubcategory;track subcat.id)
+       {
       <li (click)="navigate()" class="subcat-name">{{ subcat.name }}</li>
       }
     </ul>
