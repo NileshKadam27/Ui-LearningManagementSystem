@@ -14,12 +14,12 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./landingpage.component.css']
 })
 export class LandingpageComponent implements OnInit {
-  islogin =false;
+  isLogin =false;
   constructor() { }
 
   ngOnInit() {
 
-this.getToken()
+    this.getToken()
     
   }
 
@@ -27,7 +27,7 @@ this.getToken()
 getToken(){
   let token=localStorage.getItem("authtoken")
   if(token){
-    this.islogin=true;
+    this.isLogin=true;
    }
   }
 }

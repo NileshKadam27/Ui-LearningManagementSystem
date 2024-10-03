@@ -7,9 +7,20 @@
 
         <input type="text" placeholder="Enter Username" [formControl]="username">
 
-        <input type="password" placeholder="Enter Password" [formControl]="password">
+        @if(username.errors?.['required']==true && username.touched==true)
+        {
+            <p class="error">username is Required</p>
+        }
 
-        <button class="btn" type="button" (click)="login()">Login</button>
+        <input [type]="passisActive ? 'password' : 'text'" placeholder="Enter Password" [formControl]="password">
+        <i (mousedown)="checkPassword()" (mouseup)="checkPassword()"  class="fa fa-eye" aria-hidden="true"></i>
+
+        @if(password.errors?.['required']==true && password.touched==true)
+        {
+            <p class="error">password is Required</p>
+        }
+
+        <button class="btn" type="button" [disabled]=loginForm.invalid (click)="login()">Login</button>
 
     </form>
 

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { UserserviceService } from '../../services/user.service';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -13,10 +13,16 @@ import { CommonModule } from '@angular/common';
 })
 export class LoginComponent {
 
+  passisActive: boolean = true;
+
   constructor(private userService:UserserviceService, private router:Router){}
 
-  username = new FormControl("",[])
-  password = new FormControl("",[])
+  username = new FormControl("",[
+    Validators.required
+  ])
+  password = new FormControl("",[
+    Validators.required
+  ])
 
   loginForm = new FormGroup({
    
@@ -37,6 +43,10 @@ export class LoginComponent {
           }
         })
       }
+    }
+
+    checkPassword(){
+      this.passisActive = !this.passisActive;
     }
   
 }

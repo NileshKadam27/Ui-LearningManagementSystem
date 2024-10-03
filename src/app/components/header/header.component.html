@@ -14,13 +14,14 @@
       <p>Instructor</p>
       <p>Training</p>
 
-      @if( isLogin){
-        <p>Register</p>
-        <p (click)="login()">Login</p>
-      }@else{
+      @if(isLogin){
         <p> My Courses
         </p>
-        <p><i class="fa fa-user-circle fa-2x" aria-hidden="true"></i></p>
+        <p><i class="fa fa-user-circle fa-2x" aria-hidden="true" (click)="logOut()"></i></p>
+       
+      }@else{
+        <p (click)="register()">Register</p>
+        <p (click)="login()">Login</p>
         
       }
 

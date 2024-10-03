@@ -1,0 +1,52 @@
+<div class="container">
+
+    <form class="form" [formGroup]="registerForm">
+
+        <h1>Register</h1>
+
+        <input type="text" placeholder="Enter Username" [formControl]="username">
+        @if(username.errors?.['required']==true && username.touched==true)
+        {
+            <small class="error">username is Required</small>
+        }
+        <input id="pass" type="password" placeholder="Enter Password" [formControl]="password">
+        @if(password.errors?.['required']==true && password.touched==true)
+        {
+            <small class="error">password is Required</small>
+        }
+
+
+        <input type="text" placeholder="Enter email" [formControl]="email">
+        @if(email.errors?.['required']==true && email.touched==true)
+        {
+            <small class="error">Email is Required</small>
+        }
+        @else if(email.errors?.['pattern'])
+        {
+            <p class="error">email that must be in the following order: characters&#64;characters.domain characters followed by an &#64; sign, followed by more characters, and then a "."</p>
+        }
+
+        <input type="text" placeholder="Enter mobile" [formControl]="mobile">
+
+        @if(mobile.errors?.['required']==true && mobile.touched==true)
+        {
+            <small class="error">mobile is Required</small>
+        }
+
+        <div class="radio">
+            <div>
+                <input type="radio" id="roleCode" name="roleCode" value="STUDENT" [formControl]="roleCode">
+                <label for="Student">Student</label><br>
+            </div>
+
+            <div>
+                <input type="radio" id="roleCode" name="roleCode" value="PROFESSOR" [formControl]="roleCode">
+                <label for="Professor">Professor</label><br>
+            </div>
+        
+        </div>
+        <button class="btn" type="button" [disabled]=registerForm.invalid (click)="registerUser()">Register</button>
+
+    </form>
+
+</div>

@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { ProductserviceService } from '../../services/product.service';
+import { LandingpageComponent } from '../../pages/landingpage/landingpage.component';
 
 
 @Component({
@@ -166,5 +167,15 @@ export class HeaderComponent implements OnInit {
   login(){
     this.route.navigate(["/login"]);
     
+  }
+
+  register(){
+    this.route.navigate(["/register"]);
+  }
+
+  logOut(){
+    localStorage.setItem("authtoken","");
+    this.route.navigate([""])
+
   }
 }
