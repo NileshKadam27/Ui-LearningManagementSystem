@@ -1,7 +1,7 @@
 .search {
   width: 100%;
   height: 600px;
-  background-image: url(https://images.pexels.com/photos/8171217/pexels-photo-8171217.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2);
+  background-image: url(https://images.pexels.com/photos/6612771/pexels-photo-6612771.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -77,8 +77,60 @@ h6{
 
 
   .aboutus{
-    padding: 50px;
+    padding: 88px;
     display: flex;
     justify-content: space-between;
     align-items: center;
   }
+
+h2{
+  font-weight: 300;
+    font-size: x-large;
+    color: #c72b41;
+}
+
+
+h1{
+  font-size: 30px;
+  font-weight: normal;
+  color: #595757;
+
+
+}
+
+
+.company-image{
+  background-image: url(https://images.pexels.com/photos/3752600/pexels-photo-3752600.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2);
+  width: 100%;
+  height: 300px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  padding: 100px;
+  border-radius: 20px;
+  /* box-shadow: 7px 7px 7px 7px; */
+
+
+}
+
+
+
+.info{
+  font-size:20px;
+  font-weight:100;
+  color: grey;
+
+
+  /* color:#948f8f; */
+}
+
+.info-list{
+  padding-left: 54px;
+  font-size: 20px;
+  font-weight: 100;
+  padding-top: 19px;
+  color: grey;
+
+  /* color:#948f8f; */
+
+}

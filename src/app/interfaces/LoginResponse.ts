@@ -3,9 +3,8 @@ export interface LoginResponse {
     errorBean: any
     payload: Payload
   }
-  
+
   export interface Payload {
     role: string[]
     token: string
   }
-  

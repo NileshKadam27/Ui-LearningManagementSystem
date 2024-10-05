@@ -166,7 +166,7 @@ export class HeaderComponent implements OnInit {
 
   login(){
     this.route.navigate(["/login"]);
-    
+
   }
 
   register(){
