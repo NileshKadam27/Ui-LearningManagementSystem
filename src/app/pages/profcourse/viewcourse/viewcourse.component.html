@@ -1,0 +1,75 @@
+
+
+@if(updateModalVisible===true)
+{
+  <div class="modal"  >
+      <form [formGroup]="courseForm" class="form" >
+              <label for="courseName">Course Name</label>
+              <input type="text" id="courseName" formControlName="courseName" required>
+              <label for="courseDescription">Course Description</label>
+              <textarea id="courseDescription" formControlName="courseDescription" required></textarea>
+              <label for="videoTitle">Video Title</label>
+              <input type="text" id="videoTitle" formControlName="videoTitle" required>
+              <label for="videoDescription">Video Description</label>
+              <textarea id="videoDescription" formControlName="videoDescription" required></textarea>
+              <label for="videoDuration">Video Duration (in minutes)</label>
+              <input type="number" id="videoDuration" formControlName="videoDuration" required>
+              <label for="videoFile">Upload Video</label>
+              <input type="file" id="videoFile" (change)="onFileChange($event)" required>
+   
+  
+          <button type="submit"  class="btn" (click)="updateCourse() ">Update</button>
+          <button type="button" class="btn" (click)="updateModalVisible = false">Cancel</button>
+  
+  
+      </form>
+      
+  </div>
+}
+
+
+@if(updateModalVisible===false){
+<div class="container">
+
+    <div class="course-category">
+      @for(course of courses;track course.id){
+  
+         <div class="course-details">
+            <h3>{{course.courseCategory}}</h3>
+         @for(courseDet of course.courseDetailList;track courseDet.courseId){
+            
+             <h4>{{courseDet.courseName}}</h4>
+             <p>{{courseDet.coursedescription}}</p>
+
+            
+             <h4>Videos : </h4>
+
+           <!-- <button (click)="editCourse(courseDet)">Update</button>  -->
+         
+             <ul class="video-details">
+
+             @for(vid of courseDet.videoBean;track vid.videoId){
+              
+                <li class="video">
+                    <p class="title">{{vid.videoTitle}}</p>
+                    <button type="button" class="btn" (click)="editCourse(courseDet)">update video details</button>
+                      <video  controls>
+                        <source src="" type="video/mp4"/>
+                    </video>
+                   
+                     <p>{{vid.videoDuration}}</p>
+                     <p>{{vid.videoDescription}}</p>
+                 </li> 
+                
+                
+             }
+         </ul>
+         }
+     </div>
+     }
+ </div>
+ 
+ </div>
+}
+
+
