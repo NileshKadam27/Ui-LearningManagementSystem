@@ -1,12 +1,10 @@
-
-
 <div class="form-container">
-    <form     class="form" [formGroup]="courseForm"  (change)="checkFormValidity()">
+    <form   method="POST"  class="form" [formGroup]="courseForm" enctype="multipart/form-data" (change)="checkFormValidity()" >
 
         <label for="courseCategory">Course Category</label>
         <input class="inp" type="text"  formControlName="courseCategory" required>
  
-      
+
  
         <label for="courseName">Course Name</label>
         <input class="inp" type="text"   formControlName="courseName" required>
@@ -29,7 +27,7 @@
       
    
         <label for="videoDuration">Video Duration (in minutes)</label>
-        <input  class="inp" type="number"  formControlName="videoDuration" required>
+        <input  class="inp" type="number"  formControlName="videoDuration" required> 
 
       
 
@@ -37,12 +35,14 @@
         <input type="file" (change)="onFileChange($event)" required>
       
 
-        <button  class="btn" type="submit"  (click)="submitCourse()"  [disabled]="courseForm.invalid">Submit</button>
+        <button  class="btn" type="submit"  (click)="submitCourse()" [disabled]="courseForm.invalid">Submit</button>
 
      
     </form>
   </div>
 
+
+  
 
 
 
