@@ -1,0 +1,65 @@
+.heading {
+    padding: 30px 100px;
+    background-color: rgb(153, 142, 142);
+    text-align: center;
+  }
+  .course {
+    width: 100%;
+    padding: 30px 100px;
+    background-color: aliceblue;
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: calc(20% / 3);
+    row-gap: 30px;
+    justify-content: space-evenly;
+  }
+  .mycourse {
+    border: 1px solid #ddd;
+    width: 25%;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  .course-link video {
+    width: 100%;
+    height: auto;
+    border-radius: 6px;
+  }
+  .course-details {
+    margin-top: 10px;
+  }
+  .course-card-module {
+    margin: 0.8rem 0 0.4rem;
+  }
+  .course-card-ribbons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 0;
+  }
+  .course-card-meter-module {
+    background: var(--color-blue-300);
+    height: 100%;
+    transform-origin: left center;
+    transition: transform 150ms cubic-bezier(0.2, 0, 0.38, 0.9);
+  }
+  element.style {
+    transform: scaleX(1);
+  }
+  div {
+    display: block;
+    unicode-bidi: isolate;
+  }
+  .course-card-progress-rating {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+  }
+  .course-details p {
+    font-size: 14px;
+    color: #777;
+  }
+  .star{
+      color: goldenrod;
+  }

@@ -1,0 +1,41 @@
+<app-header></app-header>
+
+<h2 class="heading">My Learning</h2>
+<div class="course">
+  @for(mycoursedetails of mycoursedetail;track mycoursedetails.courseid){
+  <div class="mycourse">
+    <div class="course-link">
+      <!-- <img [src]="mycoursedetails.courselink" /> -->
+      <video controls>
+        <!-- <source src="src/app/video/abc.mp4"> -->
+        <source
+          src="https://videos.pexels.com/video-files/1517247/1517247-sd_640_360_24fps.mp4"
+        />
+      </video>
+    </div>
+    <div class="course-details">
+      <h3>{{ mycoursedetails.coursename }}</h3>
+      <div class="course-card-module">
+        <div class="course-card-ribbons"></div>
+      </div>
+
+      <div class="course-card-progress-rating">
+        <progress
+          id="file"
+          max="100"
+          [value]="mycoursedetails.courseprogress"
+        ></progress>
+        <p>{{ mycoursedetails.courseprogress }}% complete</p>
+
+        <p>
+          <i class="fa-solid fa-star star">{{
+            mycoursedetails.courserating
+          }}</i>
+        </p>
+        <!-- <p> <i class="fa-solid fa-star"></i> Your rating</p> -->
+      </div>
+    </div>
+  </div>
+  }
+</div>
+<app-footer></app-footer>
