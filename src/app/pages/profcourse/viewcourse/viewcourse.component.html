@@ -1,34 +1,38 @@
 
 
+@if(addVideo===true){
+
+  <div class="modal">
+      <form   method="POST"  class="form" [formGroup]="videoForm1" enctype="multipart/form-data" >
+<input  class="inp"   placeholder="Video Title" type="text"  formControlName="videoTitle" required>
+<textarea  class="inp"   placeholder="Video Description" formControlName="videoDescription" required></textarea>
+<input  class="inp" type="number"  placeholder="Video Duration (in minutes)"  formControlName="videoDuration" required> 
+<label for="videoFile">Upload Video</label>
+<input type="file" (change)="onFileChange($event)" required> 
+<button  class="btn" type="submit"  (click)="submitVideo()" >Submit</button>
+<button type="button" class="btn" (click)="addVideo = false">Cancel</button>
+</form>
+</div>
+}
+
 @if(updateModalVisible===true)
 {
   <div class="modal"  >
       <form [formGroup]="courseForm" class="form" >
-              <label for="courseName">Course Name</label>
-              <input type="text" id="courseName" formControlName="courseName" required>
-              <label for="courseDescription">Course Description</label>
-              <textarea id="courseDescription" formControlName="courseDescription" required></textarea>
-              <label for="videoTitle">Video Title</label>
-              <input type="text" id="videoTitle" formControlName="videoTitle" required>
-              <label for="videoDescription">Video Description</label>
-              <textarea id="videoDescription" formControlName="videoDescription" required></textarea>
-              <label for="videoDuration">Video Duration (in minutes)</label>
-              <input type="number" id="videoDuration" formControlName="videoDuration" required>
+              <input type="text" placeholder="Video Title" id="videoTitle" formControlName="videoTitle" required>
+              <textarea id="videoDescription" placeholder="Video Description" formControlName="videoDescription" required></textarea>
+              <input type="number" placeholder="Video Duration (in minutes)" id="videoDuration" formControlName="videoDuration" required>
               <label for="videoFile">Upload Video</label>
               <input type="file" id="videoFile" (change)="onFileChange($event)" required>
-   
-  
           <button type="submit"  class="btn" (click)="updateCourse() ">Update</button>
           <button type="button" class="btn" (click)="updateModalVisible = false">Cancel</button>
-  
-  
       </form>
       
   </div>
 }
 
 
-@if(updateModalVisible===false){
+@if(updateModalVisible===false && addVideo === false){
 <div class="container">
 
     <div class="course-category">
@@ -40,8 +44,6 @@
             
              <h4>{{courseDet.courseName}}</h4>
              <p>{{courseDet.coursedescription}}</p>
-
-            
              <h4>Videos : </h4>
 
            <!-- <button (click)="editCourse(courseDet)">Update</button>  -->
@@ -49,27 +51,35 @@
              <ul class="video-details">
 
              @for(vid of courseDet.videoBean;track vid.videoId){
-              
-                <li class="video">
-                    <p class="title">{{vid.videoTitle}}</p>
-                    <button type="button" class="btn" (click)="editCourse(courseDet)">update video details</button>
+                <li >
+                    <div class="video">
+                    <div>
+                    <p class="title">{{vid.videoId}}.{{vid.videoTitle}}</p>
                       <video  controls>
                         <source src="" type="video/mp4"/>
                     </video>
-                   
                      <p>{{vid.videoDuration}}</p>
                      <p>{{vid.videoDescription}}</p>
-                 </li> 
+                    </div>
+                    <div>
+                     <button type="button" class="btn" (click)="editCourse(courseDet)">update video details</button>
+                    </div>
+                  </div>
+                    </li> 
                 
                 
              }
          </ul>
          }
+         <button type="button" class="btn" (click)="enableVideoDets(course.id)"> add video</button>
      </div>
+    
      }
  </div>
  
  </div>
 }
+
+
 
 

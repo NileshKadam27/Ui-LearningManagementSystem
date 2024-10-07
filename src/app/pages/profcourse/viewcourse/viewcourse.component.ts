@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { CourseCategory } from '../../../interfaces/profcourse';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ProfessorService } from '../../../services/professor.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-viewcourse',
@@ -13,14 +14,15 @@ import { ProfessorService } from '../../../services/professor.service';
 export class ViewcourseComponent {
 
   ccourses: any[] = []; // Initialize your courses array
-  // editCourseForm: FormGroup;
   isEditing: boolean = false; // Flag to control the edit form visibility
   currentCourseDet: any;
   updateModalVisible:boolean=false;
+  videoForm1: FormGroup;
+  addVideo:boolean =false;
+  courseId :any;
+  
 
-  constructor(private profService:ProfessorService){
-   
-  }
+  // constructor(private profService:ProfessorService){}
 
 
   courseCategory = new FormControl("",  [Validators.required]);
@@ -40,6 +42,15 @@ export class ViewcourseComponent {
     videoDuration:this.videoDuration,
     videoFile:this.videoFile,
   })
+
+  constructor(private fb: FormBuilder, private http: HttpClient,private profService:ProfessorService) {
+    this.videoForm1=this.fb.group({
+      videoTitle: ['', Validators.required],
+      videoDescription: ['', Validators.required],
+      videoDuration: [null, [Validators.required, Validators.min(1)]],
+      videoFile: [null, Validators.required]
+    })
+  }
   courses:CourseCategory[]=[];
 
   ngOnInit() {
@@ -62,6 +73,7 @@ export class ViewcourseComponent {
   onFileChange(event: any) {
     const file = event.target.files[0];
     this.courseForm.patchValue({ videoFile: file });
+    this.videoForm1.patchValue({ videoFile: file });
   }
 
 
@@ -71,10 +83,6 @@ export class ViewcourseComponent {
       
       this.currentCourseDet = courseDetail; // Store the current course detail
       this.courseForm.patchValue({
-        
-        courseCategory:courseDetail.courseCategory,
-        courseName: courseDetail.courseName,
-        courseDescription: courseDetail.coursedescription,
         videoTitle: courseDetail.videoBean[0].videoTitle,
         videoDescription: courseDetail.videoBean[0].videoDescription,
         videoDuration: courseDetail.videoBean[0].videoDuration,
@@ -91,7 +99,6 @@ export class ViewcourseComponent {
     // }
 
     updateCourse() {
-      console.log("hii");
       if (this.courseForm.valid) {
         const updatedCourse = {
           ...this.currentCourseDet,
@@ -109,6 +116,28 @@ export class ViewcourseComponent {
 
     }
 
+    enableVideoDets(Id:any){
+      console.log("enableVideoDets");
+      this.addVideo =true;
+
+      this.courseId=Id;
+      console.log(this.courseId);
+        }
+
+    submitVideo(){
+        const formData = new FormData();
+        Object.keys(this.courseForm.value).forEach(key => {
+          formData.append(key, this.videoForm1.value[key]);
+        });
+      console.log(this.courseId);
+        this.profService.addVideo(formData,this.courseId).subscribe((response)=>{
+          console.log(response);
+          this.addVideo =false
+        })
+
+
+    
+      }
 
 }
 

@@ -1,45 +1,27 @@
 <div class="form-container">
     <form   method="POST"  class="form" [formGroup]="courseForm" enctype="multipart/form-data" (change)="checkFormValidity()" >
-
-        <label for="courseCategory">Course Category</label>
-        <input class="inp" type="text"  formControlName="courseCategory" required>
- 
-
- 
-        <label for="courseName">Course Name</label>
-        <input class="inp" type="text"   formControlName="courseName" required>
-
-      
-
-        <label for="courseDescription">Course Description</label>
-        <textarea   class="inp" formControlName="courseDescription" required></textarea>
-
-      
-
-        <label for="videoTitle">Video Title</label>
-        <input  class="inp" type="text"  formControlName="videoTitle" required>
-     
-      
-
-        <label for="videoDescription">Video Description</label>
-        <textarea  class="inp" formControlName="videoDescription" required></textarea>
-
-      
-   
-        <label for="videoDuration">Video Duration (in minutes)</label>
-        <input  class="inp" type="number"  formControlName="videoDuration" required> 
-
-      
-
-        <label for="videoFile">Upload Video</label>
-        <input type="file" (change)="onFileChange($event)" required>
-      
-
-        <button  class="btn" type="submit"  (click)="submitCourse()" [disabled]="courseForm.invalid">Submit</button>
-
-     
+        <input class="inp" type="text"  placeholder="Course Category"  formControlName="courseCategory" required>
+        <input class="inp" type="text"    placeholder="Course Name"  formControlName="courseName" required>
+        <input   class="inp" type="text" placeholder="Course Description" formControlName="courseDescription" required>
+        <button  class="btn" type="submit"  (click)="submitCourse()" [disabled]="courseForm.invalid">Submit</button> 
     </form>
   </div>
+
+
+
+ <!-- @if(addcourse===true){
+    <div class="form-container">
+        <form   method="POST"  class="form" [formGroup]="courseForm" enctype="multipart/form-data" (change)="checkFormValidity()" >
+  <input  class="inp" type="text"  formControlName="videoTitle" required>
+  <textarea  class="inp"   placeholder="Video Description" formControlName="videoDescription" required></textarea>
+  <input  class="inp" type="number"  placeholder="Video Duration (in minutes)"  formControlName="videoDuration" required> 
+  <label for="videoFile">Upload Video</label>
+  <input type="file" (change)="onFileChange($event)" required> 
+  <button  class="btn" type="submit"  (click)="submitCourse()" [disabled]="courseForm.invalid">Submit</button>
+</form>
+</div> -->
+
+<!-- } -->
 
 
   
