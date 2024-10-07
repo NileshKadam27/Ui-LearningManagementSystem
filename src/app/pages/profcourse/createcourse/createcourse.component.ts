@@ -13,38 +13,21 @@ import { ProfessorService } from '../../../services/professor.service';
 export class CreatecourseComponent {
 
   courseForm: FormGroup;
-  file!: File;
+  allowSubmit: boolean = false;
 
-
-  constructor(private fb: FormBuilder, private http: HttpClient,private profService:ProfcourseService) {
+  constructor(private fb: FormBuilder, private http: HttpClient,private profService:ProfessorService) {
     this.courseForm = this.fb.group({
       courseCategory: ['', Validators.required],
       courseName: ['', Validators.required],
       courseDescription: ['', Validators.required],
-      videoTitle: ['', Validators.required],
-      videoDescription: ['', Validators.required],
-      videoDuration: [null, [Validators.required, Validators.min(1)]],
-      videoFile: [null, Validators.required]
     });
   }
 
-
-
-
-
-  allowSubmit: boolean = false;
-
-   formData = new FormData();
-  onFileChange(event: any) {
-
-  const file = event.target.files[0];
-  console.log(file);
-    this.courseForm.patchValue({ videoFile: file });
-  }
+  
+  
 
 
   checkFormValidity() {
-
     this.allowSubmit = this.courseForm.valid;
   }
 
@@ -58,8 +41,6 @@ export class CreatecourseComponent {
       Object.keys(this.courseForm.value).forEach(key => {
         formData.append(key, this.courseForm.value[key]);
       });
-       
-      
       this.profService.postCourseDetails(formData).subscribe((response) => {
         console.log('Course saved!', response);
         this.courseForm.reset();
@@ -69,7 +50,4 @@ export class CreatecourseComponent {
     }
   }
 
-
-
-  }
-
+}
