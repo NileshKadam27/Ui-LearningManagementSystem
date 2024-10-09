@@ -20,6 +20,11 @@
             <p class="error">password is Required</p>
         }
 
+        @if(isError==true){
+            <p class="error">{{errorMessage}}</p>
+        }
+
+
         <button class="btn" type="button" [disabled]=loginForm.invalid (click)="login()">Login</button>
 
     </form>

@@ -10,20 +10,24 @@
     </button>
     <div class="navlinks">
       <p>About us</p>
-      <p>Learnings</p>
-      <p>Instructor</p>
-      <p>Training</p>
-
       @if(isLogin){
-        <p (click)="mycourse()"> My Courses
-        </p>
+        @if(role==='ROLE_STUDENT'){
+          <p (click)="mycourse()"> My Courses
+          </p>
+        }
+        @if(role==='ROLE_INSTRUCTOR'){
+          <p > View courses</p>
+          <p (click)="addCourse()"> Add course</p>
+        }
         <p><i class="fa fa-user-circle fa-2x" aria-hidden="true" (click)="logOut()"></i></p>
        
+
       }@else{
         <p (click)="register()">Register</p>
         <p (click)="login()">Login</p>
         
       }
+
 
     </div>
   </div>

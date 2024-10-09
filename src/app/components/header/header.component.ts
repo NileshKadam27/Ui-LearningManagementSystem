@@ -17,6 +17,7 @@ export class HeaderComponent implements OnInit {
   showCourses: boolean = false;
 
   @Input() isLogin:boolean=false;
+  role:any=''
   constructor(
     private route: Router,
     private productservice: ProductserviceService
@@ -136,6 +137,7 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
     this.fetchData();
+    this.role = localStorage.getItem("role");
   }
 
   mouseenter() {
@@ -180,5 +182,9 @@ export class HeaderComponent implements OnInit {
   }
   mycourse(){
     this.route.navigate(["/mycourse"])
+  }
+
+  addCourse(){
+    this.route.navigate(["/createcourse"])
   }
 }
