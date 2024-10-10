@@ -13,25 +13,38 @@ export class ProfessorService {
   constructor(private httpClient:HttpClient) { }
 
      postCourseDetails(course : any):Observable<any>{
-      console.log(course);
-      return this.httpClient.post<any>(this.courseUrl+'/register',course);
+      let headers = new HttpHeaders({
+        "Content-Type":"application/json",
+        "Authorization":`Bearer ${localStorage.getItem("authtoken")}`
+      })
+      return this.httpClient.post<any>(this.courseUrl+'/register',course,{headers:headers});
      }
  
    
      getAllCourses(){
       let headers = new HttpHeaders({
-        "Content-Type":"application/json"
+        "Content-Type":"application/json",
+        "Authorization":`Bearer ${localStorage.getItem("authtoken")}`
       })
       let response= this.httpClient.get<CourseCategory[]>(this.courseUrl+'/mycourse',{headers:headers});  
       return response;
      }
 
      updateCourse(courseId:any,videoId:any,course:any):Observable<any>{
-      return this.httpClient.put<any>(this.courseUrl+'/'+courseId+'/video/'+videoId,course);
+
+      let headers = new HttpHeaders({
+        "Content-Type":"application/json",
+        "Authorization":`Bearer ${localStorage.getItem("authtoken")}`
+      })
+      return this.httpClient.put<any>(this.courseUrl+'/'+courseId+'/video/'+videoId,course,{headers:headers});
      }
 
      addVideo(video:any,courseId:any):Observable<any>{
-      return this.httpClient.put<any>(this.courseUrl+'/'+courseId+'/video',video);
+      let headers = new HttpHeaders({
+        "Content-Type":"application/json",
+        "Authorization":`Bearer ${localStorage.getItem("authtoken")}`
+      })
+      return this.httpClient.put<any>(this.courseUrl+'/'+courseId+'/video',video,{headers:headers});
      }
 
     
