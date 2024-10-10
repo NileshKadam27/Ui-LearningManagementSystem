@@ -49,10 +49,10 @@ export class ViewcourseComponent {
   constructor(private fb: FormBuilder, private http: HttpClient,private profService:ProfessorService) {
     this.courseForm1 = this.fb.group({
       Id:['',],
-      videoTitle: ['', Validators.required],
-      videoDescription: ['', Validators.required],
-      videoDuration: [null, [Validators.required, Validators.min(1)]],
-      videoFile: [null, Validators.required]
+      videoTitle: [''],
+      videoDescription: [''],
+      videoDuration: [null],
+      videoFile: [null]
     }),
   
   
@@ -90,7 +90,7 @@ export class ViewcourseComponent {
 
   
     editCourse(courseDet:any,video:any) {
-
+      this.currentCourseDet = courseDet;
       this.courseId=courseDet.courseId;
       this.videoId=video.videoId;
       this.courseForm1.patchValue({
@@ -106,20 +106,25 @@ export class ViewcourseComponent {
 
 
 
-    updateCourse() {       
+    updateCourse() {
+      console.log(this.currentCourseDet);       
+     
       const formData = new FormData();
-      Object.keys(this.courseForm1.value).forEach(key => {
-        formData.append(key, this.courseForm1.value[key]);
-      });
+   
 
+      console.log(this.courseForm1.value);
 
-          this.profService.updateCourse(this.courseId,this.videoId,formData)
+formData.append("videoTitle",this.courseForm1.value.videoTitle);
+formData.append("videoDescription",this.courseForm1.value.videoDescription);
+formData.append("videoDuration",this.courseForm1.value.videoDuration);
+formData.append("videoFile",this.courseForm1.value.videoFile)
+        this.profService.updateCourse(this.currentCourseDet.courseId,this.currentCourseDet.videoBean[0].videoId,formData)
         .subscribe((response)=>{
           console.log(response);
         })
        
       this.updateModalVisible = false
-      
+
 
     }
 

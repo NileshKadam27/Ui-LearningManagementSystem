@@ -27,11 +27,7 @@ export class ProfessorService {
      }
 
      updateCourse(courseId:any,videoId:any,course:any):Observable<any>{
-
-      let headers = new HttpHeaders({
-        "Content-Type":"application/json"
-      })
-      return this.httpClient.put<any>(this.courseUrl+'/'+courseId+'/video/'+videoId,course,{headers:headers});
+      return this.httpClient.put<any>(this.courseUrl+'/'+courseId+'/video/'+videoId,course);
      }
 
      addVideo(video:any,courseId:any):Observable<any>{
