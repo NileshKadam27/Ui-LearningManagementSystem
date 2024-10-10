@@ -187,4 +187,8 @@ export class HeaderComponent implements OnInit {
   addCourse(){
     this.route.navigate(["/createcourse"])
   }
+
+  viewCourse(){
+    this.route.navigate(["/viewcourse"])
+  }
 }

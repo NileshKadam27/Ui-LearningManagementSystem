@@ -8,7 +8,7 @@ export const httpInterceptor: HttpInterceptorFn = (req, next) => {
   }else{
     const authReq = req.clone({
    
-      headers: req.headers.set('Authorization', 'Bearer Code')
+      headers: req.headers.set('Authorization', 'Bearer '+localStorage.getItem('authtoken'))
     })
     return next(authReq);
   }

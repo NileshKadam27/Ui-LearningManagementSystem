@@ -4,6 +4,8 @@ import { CourseComponent } from './pages/course/course.component';
 import { LandingpageComponent } from './pages/landingpage/landingpage.component';
 import { LoginComponent } from './pages/login/login.component';
 import { MycourseComponent } from './pages/mycourse/mycourse.component';
+import { CreatecourseComponent } from './pages/profcourse/createcourse/createcourse.component';
+import { ViewcourseComponent } from './pages/profcourse/viewcourse/viewcourse.component';
 import { RegisterComponent } from './pages/register/register.component';
 
 export const routes: Routes = [
@@ -17,6 +19,7 @@ export const routes: Routes = [
   {path:"",component:LandingpageComponent},
   {path:"register",component:RegisterComponent},
   {path:"mycourse",component:MycourseComponent},
-  {path:"course",component:CourseComponent}
+  {path:"createcourse",component:CreatecourseComponent},
+  {path:"viewcourse",component:ViewcourseComponent}
 
 ];

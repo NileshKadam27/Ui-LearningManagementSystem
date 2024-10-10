@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ProfessorService } from '../../../services/professor.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-createcourse',
@@ -15,7 +16,7 @@ export class CreatecourseComponent {
   courseForm: FormGroup;
   allowSubmit: boolean = false;
 
-  constructor(private fb: FormBuilder, private http: HttpClient,private profService:ProfessorService) {
+  constructor(private fb: FormBuilder, private http: HttpClient,private profService:ProfessorService,private router:Router) {
     this.courseForm = this.fb.group({
       courseCategory: ['', Validators.required],
       courseName: ['', Validators.required],
@@ -44,6 +45,8 @@ export class CreatecourseComponent {
       this.profService.postCourseDetails(formData).subscribe((response) => {
         console.log('Course saved!', response);
         this.courseForm.reset();
+        this.router.navigate(["/viewcourse"]);
+
       })
     } else {
       console.error('Form is invalid!');

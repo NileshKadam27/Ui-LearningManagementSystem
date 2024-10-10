@@ -16,7 +16,7 @@
           </p>
         }
         @if(role==='ROLE_INSTRUCTOR'){
-          <p > View courses</p>
+          <p (click)="viewCourse()"> View courses</p>
           <p (click)="addCourse()"> Add course</p>
         }
         <p><i class="fa fa-user-circle fa-2x" aria-hidden="true" (click)="logOut()"></i></p>

@@ -49,8 +49,8 @@
            <!-- <button (click)="editCourse(courseDet)">Update</button>  -->
          
              <ul class="video-details">
-
              @for(vid of courseDet.videoBean;track vid.videoId){
+              @if(vid.videoLink!=null){
                 <li >
                     <div class="video">
                     <div>
@@ -59,7 +59,7 @@
                         <source src="" type="video/mp4"/>
                     </video>
                      <p>{{vid.videoDuration}}</p>
-                     <p>{{vid.videoDescription}}</p>
+                     <p>{{vid.videoDescription}}</p>    
                     </div>
                     <div>
                      <button type="button" class="btn" (click)="editCourse(courseDet,vid)">update video details</button>
@@ -67,7 +67,7 @@
                   </div>
                     </li> 
                 
-                
+                  }
              }
          </ul>
          }
