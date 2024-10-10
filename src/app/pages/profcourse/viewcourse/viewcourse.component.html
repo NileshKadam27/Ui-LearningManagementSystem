@@ -50,13 +50,13 @@
          
              <ul class="video-details">
              @for(vid of courseDet.videoBean;track vid.videoId){
-              @if(vid.videoLink!=null){
+             
                 <li >
                     <div class="video">
                     <div>
                     <p class="title">{{vid.videoId}}.{{vid.videoTitle}}</p>
                       <video  controls>
-                        <source src="" type="video/mp4"/>
+                        <source [src]="vid.videoLink" />
                     </video>
                      <p>{{vid.videoDuration}}</p>
                      <p>{{vid.videoDescription}}</p>    
@@ -67,11 +67,12 @@
                   </div>
                     </li> 
                 
-                  }
+         
              }
          </ul>
+         <button type="button" class="btn" (click)="enableVideoDets(courseDet.courseId)"> add video</button>
          }
-         <button type="button" class="btn" (click)="enableVideoDets(course.id)"> add video</button>
+        
      </div>
     
      }
