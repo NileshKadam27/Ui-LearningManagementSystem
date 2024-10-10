@@ -1,5 +1,6 @@
 import { Routes } from '../../node_modules/@angular/router/index';
 import { CoursedetailsComponent } from './components/coursedetails/coursedetails.component';
+import { CourseComponent } from './pages/course/course.component';
 import { LandingpageComponent } from './pages/landingpage/landingpage.component';
 import { LoginComponent } from './pages/login/login.component';
 import { MycourseComponent } from './pages/mycourse/mycourse.component';
@@ -15,6 +16,7 @@ export const routes: Routes = [
   {path:"login",component:LoginComponent},
   {path:"",component:LandingpageComponent},
   {path:"register",component:RegisterComponent},
-  {path:"mycourse",component:MycourseComponent}
+  {path:"mycourse",component:MycourseComponent},
+  {path:"course",component:CourseComponent}
 
 ];
