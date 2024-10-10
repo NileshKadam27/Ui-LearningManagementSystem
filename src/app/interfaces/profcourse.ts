@@ -20,9 +20,9 @@ export interface CourseDetail {
 }
 
 export interface CourseCategory {
-    id: number;
-    courseCategory: string;
-    courseDetailList: CourseDetail[];
+    id?: number;
+    courseCategory?: string;
+    courseDetailList?: CourseDetail[];
 }
 
 

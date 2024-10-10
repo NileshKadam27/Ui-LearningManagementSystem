@@ -21,6 +21,7 @@ export class CreatecourseComponent {
       courseCategory: ['', Validators.required],
       courseName: ['', Validators.required],
       courseDescription: ['', Validators.required],
+      courseImage: ['', Validators.required]
     });
   }
 
@@ -51,6 +52,11 @@ export class CreatecourseComponent {
     } else {
       console.error('Form is invalid!');
     }
+  }
+
+  onFileChange(event: any) {
+    const file = event.target.files[0];
+    this.courseForm.patchValue({ courseImage: file });
   }
 
 }

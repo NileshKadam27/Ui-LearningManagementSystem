@@ -20,6 +20,7 @@ export const routes: Routes = [
   {path:"register",component:RegisterComponent},
   {path:"mycourse",component:MycourseComponent},
   {path:"createcourse",component:CreatecourseComponent},
-  {path:"viewcourse",component:ViewcourseComponent}
+  {path:"viewcourse",component:ViewcourseComponent},
+  {path:"course",component:CourseComponent}
 
 ];

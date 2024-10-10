@@ -189,6 +189,6 @@ export class HeaderComponent implements OnInit {
   }
 
   viewCourse(){
-    this.route.navigate(["/viewcourse"])
+    this.route.navigate(["/course"])
   }
 }

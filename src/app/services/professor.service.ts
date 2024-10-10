@@ -18,11 +18,11 @@ export class ProfessorService {
      }
  
    
-     getAllCourses(){
+     getAllCourses():Observable<any>{
       let headers = new HttpHeaders({
         "Content-Type":"application/json"
       })
-      let response= this.httpClient.get<CourseCategory[]>(this.courseUrl+'/mycourse',{headers:headers});  
+      let response= this.httpClient.get<any>(this.courseUrl+'/mycourse',{headers:headers});  
       return response;
      }
 

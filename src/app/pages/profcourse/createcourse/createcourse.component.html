@@ -4,6 +4,8 @@
         <input class="inp" type="text"  placeholder="Course Category"  formControlName="courseCategory" required>
         <input class="inp" type="text"    placeholder="Course Name"  formControlName="courseName" required>
         <input   class="inp" type="text" placeholder="Course Description" formControlName="courseDescription" required>
+        <label for="courseImage">Upload course image</label>
+        <input type="file" (change)="onFileChange($event)" required> 
         <button  class="btn" type="submit"  (click)="submitCourse()" [disabled]="courseForm.invalid">Submit</button> 
     </form>
   </div>
