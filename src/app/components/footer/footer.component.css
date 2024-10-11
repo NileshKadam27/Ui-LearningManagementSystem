@@ -1,0 +1,62 @@
+.footer {
+  background-color: #2e2d2d;
+  color: #e6e6e6;
+  padding: 40px 20px;
+  text-align: center;       /* Center align text */
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin: 0 auto;
+  align-items: center;
+             /* Center the content */
+}
+
+.footer-description,
+.footer-links,
+.footer-contact,
+.footer-social {
+  flex: 1;                       /* Equal space for each section */
+  margin: 10px;                 /* Space between sections */
+}
+
+.footer-links ul {
+  list-style-type: none;        /* Remove bullet points */
+  padding: 0;                   /* Remove padding */
+}
+
+.footer-links li {
+  margin: 8px 0;                /* Space between links */
+}
+
+.footer-links a {
+  color: #ecf0f1;                /* Light link color */
+  text-decoration: none;         /* Remove underline */
+}
+
+.footer-links a:hover {
+  text-decoration: underline;    /* Underline on hover */
+}
+
+.footer-social {
+  display: flex;                /* Flexbox for social icons */
+  justify-content: center;      /* Center the icons */
+  gap: 15px;                   /* Space between icons */
+}
+
+.social-icon img {
+  width: 24px;                  /* Icon width */
+  height: 24px;                 /* Icon height */
+  transition: transform 0.3s;   /* Smooth hover effect */
+}
+
+.social-icon img:hover {
+  transform: scale(1.1);        /* Scale effect on hover */
+}
+
+.footer-bottom {
+  margin-top: 20px;            /* Space above bottom text */
+  font-size: 14px;              /* Smaller font size */
+}

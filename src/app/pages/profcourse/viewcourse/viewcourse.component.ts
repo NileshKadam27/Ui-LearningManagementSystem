@@ -62,14 +62,14 @@ export class ViewcourseComponent {
       videoFile: [null, Validators.required]
     })
   }
-  courses:CourseCategory[]=[];
+  courses:any[]=[];
 
   ngOnInit() {
     this.profService.getAllCourses().subscribe((response:any)=>{
         console.log(response);
         this.courses= response;
         this.courses=this.courses.map((ele)=>{
-          ele.courseDetailList.forEach((cdl)=>{
+          ele.courseDetailList.forEach((cdl:any)=>{
           for(let i=0;i<cdl.videoBean.length-1;i++){
          cdl.videoBean[i].videoId=i+1;
         }
@@ -80,11 +80,11 @@ export class ViewcourseComponent {
   })
   }
   hideUpdateModal(event:any)
-  { 
+  {
     if(event.target?.className==="modal"){
       this.updateModalVisible = false
     }
-    
+
   }
   onFileChange(event: any) {
     const file = event.target.files[0];
@@ -94,7 +94,7 @@ export class ViewcourseComponent {
 
 
 
-  
+
     editCourse(courseDet:any,video:any) {
       this.currentCourseDet = courseDet;
       this.courseId=courseDet.courseId;
@@ -113,10 +113,10 @@ export class ViewcourseComponent {
 
 
     updateCourse() {
-      console.log(this.currentCourseDet);       
-     
+      console.log(this.currentCourseDet);
+
       const formData = new FormData();
-   
+
 
       console.log(this.courseForm1.value);
 
@@ -128,7 +128,7 @@ formData.append("videoFile",this.courseForm1.value.videoFile)
         .subscribe((response)=>{
           console.log(response);
         })
-       
+
       this.updateModalVisible = false
 
 
@@ -154,7 +154,7 @@ formData.append("videoFile",this.courseForm1.value.videoFile)
         })
 
 
-    
+
       }
 
 }

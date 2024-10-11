@@ -9,12 +9,12 @@
 
     </section>
     @for(course of courseList;track course.id){
-  <div class="course-container">
+  <div class="course-container" >
     <div class="course-image">
         <img [src]=course.courseDetailList[0].courseImageLink alt="course-image">
     </div>
 
-    <div class="'course-descrption">
+    <div (click)="getourseDetails()" class="'course-descrption">
 
         <h2>{{course.courseDetailList[0].courseName}}</h2>
         <br>
@@ -22,9 +22,9 @@
         <p><strong>Instructor:</strong> Saurabh Gupta</p>
 
           <div class="star-rating">
-            <i class="fas fa-star"></i>  
-            <i class="fas fa-star"></i>  
-            <i class="fas fa-star"></i>  
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
             <i class="fas fa-star"></i>
             <i class="fas fa-star-half-alt"></i>
           </div>

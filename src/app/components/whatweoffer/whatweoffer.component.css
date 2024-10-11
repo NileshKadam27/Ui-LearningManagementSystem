@@ -12,7 +12,7 @@
 
 .card{
   width: 25%;
-  height: 500px;
+  height: 400px;
   background-color: rgb(245 245 245);
   border-radius: 5px;
   /* padding: 21px; */
@@ -41,15 +41,17 @@ h3{
 
 .traing-info{
   padding: 35px;
-  font-size: large;
-display: flex;
-flex-direction: column;
-row-gap: 20px;
+  font-size: 15px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+
 
 }
 
 ul{
-  font-size: large;
+  font-size: 15px;
+
 
 }
 

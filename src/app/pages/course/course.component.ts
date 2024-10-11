@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { HeaderComponent } from '../../components/header/header.component';
 import { HttpClient } from '@angular/common/http';
 import { ProfessorService } from '../../services/professor.service';
+import { Route, Router } from '@angular/router';
 
 @Component({
   selector: 'app-course',
@@ -14,9 +15,9 @@ export class CourseComponent {
 
   isLogin =false;
 
-  courseList:[]=[]
+  courseList:any
 
-  constructor(private http: HttpClient,private profService:ProfessorService){}
+  constructor(private http: HttpClient,private profService:ProfessorService,private route:Router){}
 
   ngOnInit() {
 
@@ -35,6 +36,12 @@ getToken(){
   if(token){
     this.isLogin=true;
    }
+  }
+
+
+  getourseDetails(){
+    debugger
+    this.route.navigate(["/mycourse"]);
   }
 
 }

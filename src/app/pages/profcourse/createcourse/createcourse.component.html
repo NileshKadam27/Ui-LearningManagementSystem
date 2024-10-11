@@ -1,12 +1,27 @@
+<app-header [isLogin]="true"></app-header>
+
+
+
+
+
 
 <div class="form-container">
+
+
     <form   method="POST"  class="form" [formGroup]="courseForm"  (change)="checkFormValidity()" >
+      <h1>ADD NEW COURSE</h1>
+
+      <label>Course Name</label>
+      <input class="inp" type="text"    placeholder="Course Name"  formControlName="courseName" required>
+      <label>Course Category</label>
+
         <input class="inp" type="text"  placeholder="Course Category"  formControlName="courseCategory" required>
-        <input class="inp" type="text"    placeholder="Course Name"  formControlName="courseName" required>
+        <label>Course Description</label>
+
         <input   class="inp" type="text" placeholder="Course Description" formControlName="courseDescription" required>
         <label for="courseImage">Upload course image</label>
-        <input type="file" (change)="onFileChange($event)" required> 
-        <button  class="btn" type="submit"  (click)="submitCourse()" [disabled]="courseForm.invalid">Submit</button> 
+        <input type="file" (change)="onFileChange($event)" required>
+        <button  class="btn" type="submit"  (click)="submitCourse()" [disabled]="courseForm.invalid">Submit</button>
     </form>
   </div>
 
@@ -17,14 +32,14 @@
         <form   method="POST"  class="form" [formGroup]="courseForm" enctype="multipart/form-data" (change)="checkFormValidity()" >
   <input  class="inp" type="text"  formControlName="videoTitle" required>
   <textarea  class="inp"   placeholder="Video Description" formControlName="videoDescription" required></textarea>
-  <input  class="inp" type="number"  placeholder="Video Duration (in minutes)"  formControlName="videoDuration" required> 
+  <input  class="inp" type="number"  placeholder="Video Duration (in minutes)"  formControlName="videoDuration" required>
   <label for="videoFile">Upload Video</label>
-  <input type="file" (change)="onFileChange($event)" required> 
+  <input type="file" (change)="onFileChange($event)" required>
   <button  class="btn" type="submit"  (click)="submitCourse()" [disabled]="courseForm.invalid">Submit</button>
 </form>
 </div> -->
 
 <!-- } -->
 
+<app-footer></app-footer>
 
-  
