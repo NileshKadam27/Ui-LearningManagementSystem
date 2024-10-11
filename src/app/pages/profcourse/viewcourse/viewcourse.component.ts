@@ -4,11 +4,14 @@ import { CourseCategory } from '../../../interfaces/profcourse';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ProfessorService } from '../../../services/professor.service';
 import { HttpClient } from '@angular/common/http';
+import { ActivatedRoute, Route, Router } from '@angular/router';
+import { HeaderComponent } from '../../../components/header/header.component';
+import { FooterComponent } from '../../../components/footer/footer.component';
 
 @Component({
   selector: 'app-viewcourse',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule,HeaderComponent,FooterComponent],
   templateUrl: './viewcourse.component.html',
   styleUrl: './viewcourse.component.css'
 })
@@ -46,7 +49,7 @@ export class ViewcourseComponent {
     videoFile:this.videoFile,
   })
 
-  constructor(private fb: FormBuilder, private http: HttpClient,private profService:ProfessorService) {
+  constructor(private fb: FormBuilder, private http: HttpClient,private profService:ProfessorService ,private route :ActivatedRoute ) {
     this.courseForm1 = this.fb.group({
       Id:['',],
       videoTitle: [''],
@@ -65,7 +68,27 @@ export class ViewcourseComponent {
   courses:any[]=[];
 
   ngOnInit() {
-    this.profService.getAllCourses().subscribe((response:any)=>{
+
+
+    this.route.queryParams.subscribe
+    (
+    params =>
+    {
+          this.courseId = params[
+    'courseId'
+    ];
+       
+  
+        });
+
+        this.getCourses()
+  }
+
+
+
+  getCourses(){
+    console.log('dd', this.courseId)
+    this.profService.getAllCourses(this.courseId).subscribe((response:any)=>{
         console.log(response);
         this.courses= response;
         this.courses=this.courses.map((ele)=>{
@@ -151,6 +174,8 @@ formData.append("videoFile",this.courseForm1.value.videoFile)
         this.profService.addVideo(formData,this.courseId).subscribe((response)=>{
           console.log(response);
           this.addVideo =false
+          this.getCourses()
+          
         })
 
 

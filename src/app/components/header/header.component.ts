@@ -18,6 +18,7 @@ export class HeaderComponent implements OnInit {
 
   @Input() isLogin:boolean=false;
   role:any=''
+  allCategoriesAndSubCategories:any;
   constructor(
     private route: Router,
     private productservice: ProductserviceService
@@ -133,11 +134,21 @@ export class HeaderComponent implements OnInit {
 
 
   ];
-  selctedSubcategory: { id: number; name: string }[] | undefined;
+  selctedSubcategory: any
 
   ngOnInit() {
     this.fetchData();
     this.role = localStorage.getItem("role");
+
+    this.getAllCategories()
+  }
+
+
+
+  getAllCategories(){
+    this.productservice.getAllCategories().subscribe(res=>{
+      this.allCategoriesAndSubCategories=res.payload
+    })
   }
 
   mouseenter() {
@@ -152,14 +163,17 @@ export class HeaderComponent implements OnInit {
     this.showCourses = true;
   }
 
-  getSubCategory(category: string) {
-    this.selctedSubcategory = this.details.find(
-      (a) => a.category === category
-    )?.courses;
+  getSubCategory(courses: any,id:any) {
+    debugger
+    this.selctedSubcategory = courses.filter(
+      (a:any) => a.courseId ===id
+    )
   }
 
-  navigate() {
-    this.route.navigate(['/coursedetails']);
+  navigate(courseId:any) {
+    this.route.navigate(['/coursedetails'], {queryParams: {courseId:courseId} });
+
+  
   }
 
   fetchData() {

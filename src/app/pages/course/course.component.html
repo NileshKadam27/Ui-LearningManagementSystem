@@ -14,7 +14,7 @@
         <img [src]=course.courseDetailList[0].courseImageLink alt="course-image">
     </div>
 
-    <div (click)="getourseDetails()" class="'course-descrption">
+    <div (click)="getCourseDetails(course.courseDetailList[0].courseId)" class="'course-descrption">
 
         <h2>{{course.courseDetailList[0].courseName}}</h2>
         <br>

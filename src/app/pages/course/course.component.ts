@@ -9,39 +9,45 @@ import { Route, Router } from '@angular/router';
   standalone: true,
   imports: [HeaderComponent],
   templateUrl: './course.component.html',
-  styleUrl: './course.component.css'
+  styleUrl: './course.component.css',
 })
 export class CourseComponent {
+  isLogin = false;
 
-  isLogin =false;
+  courseList: any;
 
-  courseList:any
+  role: any = '';
 
-  constructor(private http: HttpClient,private profService:ProfessorService,private route:Router){}
+  constructor(
+    private http: HttpClient,
+    private profService: ProfessorService,
+    private route: Router
+  ) {}
 
   ngOnInit() {
-
-    this.getToken()
-    this.profService.getAllCourses().subscribe(response=>{
+    this.getToken();
+    this.profService.getAllCourses('').subscribe((response) => {
       console.log(response);
-      this.courseList=response
-    })
-
-
+      this.courseList = response;
+    });
   }
 
-
-getToken(){
-  let token=localStorage.getItem("authtoken")
-  if(token){
-    this.isLogin=true;
-   }
+  getToken() {
+    let token = localStorage.getItem('authtoken');
+    if (token) {
+      this.isLogin = true;
+    }
   }
 
-
-  getourseDetails(){
-    debugger
-    this.route.navigate(["/mycourse"]);
+  getCourseDetails(courseId: any) {
+    debugger;
+    this.role = localStorage.getItem('role');
+    if (this.role === 'ROLE_INSTRUCTOR') {
+      this.route.navigate(['/viewcourse'], {
+        queryParams: { courseId: courseId },
+      });
+    } else {
+      this.route.navigate(['/mycourse']);
+    }
   }
-
 }

@@ -35,18 +35,18 @@
 
 <div class="hover_view" (mouseover)="mouseenter()" (mouseleave)="onMouseLeave()"*ngIf="showCategories">
   <div class="category">
-    @for(cat of details;track cat.category) {
-    <div (mouseover)="getSubCategory(cat.category)" class="cat-list">
-      {{ cat.category }}
+    @for(cat of allCategoriesAndSubCategories;track cat.catid) {
+    <div (mouseover)="getSubCategory(cat.courseList ,cat.catid)" class="cat-list">
+      {{ cat.catgeoryName }}
     </div>
     }
   </div>
 
   <div class="sub-categoryview">
     <ul class="subcat-list">
-      @for(subcat of selctedSubcategory;track subcat.id)
+      @for(subcat of selctedSubcategory;track subcat.courseId)
        {
-      <li (click)="navigate()" class="subcat-name">{{ subcat.name }}</li>
+      <li (click)="navigate( subcat.courseId)" class="subcat-name">{{ subcat.courseName }}</li>
       }
     </ul>
   </div>
