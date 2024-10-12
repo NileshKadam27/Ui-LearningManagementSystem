@@ -12,6 +12,7 @@ export class ProfessorService {
   courseUrl="http://localhost:8080/v1/user/professor/course";
   courseUrlWithId="http://localhost:8080/v1/user/professor/course/mycourse?courseId=";
 enrollCourseUrl="http://localhost:8080/v1/user/enroll/course"
+getCourseUrl="http://localhost:8080/v1/course/getcourses";
   constructor(private httpClient:HttpClient) { }
 
      postCourseDetails(course : any):Observable<any>{
@@ -25,6 +26,14 @@ enrollCourseUrl="http://localhost:8080/v1/user/enroll/course"
         "Content-Type":"application/json"
       })
       let response= this.httpClient.get<any>(this.courseUrlWithId + courseId,{headers:headers});
+      return response;
+     }
+
+     getCourses():Observable<any>{
+      let headers = new HttpHeaders({
+        "Content-Type":"application/json"
+      })
+      let response= this.httpClient.get<any>(this.getCourseUrl,{headers:headers});
       return response;
      }
 

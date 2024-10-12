@@ -90,7 +90,9 @@
       @for(courseDet of course.courseDetailList;track courseDet.courseId){
 
       <h4>{{ courseDet.courseName }}</h4>
+      
       <p>{{ courseDet.coursedescription }}</p>
+      @if(role=='ROLE_INSTRUCTOR'){
         <button
         class="btn"
         type="button"
@@ -98,6 +100,8 @@
       >
         Upload video
       </button>
+      }
+
 
 
       <!-- <button (click)="editCourse(courseDet)">Update</button>  -->
@@ -117,12 +121,11 @@
             </div>
             <div>
 
-
-
-              <i               (click)="editCourse(courseDet, vid)"
-               class="fa-solid fa-pen-to-square fa-2xl">
-              </i>
-
+              @if(role=='ROLE_INSTRUCTOR'){
+                <i               (click)="editCourse(courseDet, vid)"
+                class="fa-solid fa-pen-to-square fa-2xl">
+               </i>
+              }
             </div>
           </div>
         </li>

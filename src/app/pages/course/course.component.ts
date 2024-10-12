@@ -41,12 +41,13 @@ export class CourseComponent {
         });
 
     this.getToken();
-    this.profService.getAllCourses(this.courseId?this.courseId:'').subscribe((response) => {
+    this.profService.getCourses().subscribe((response) => {
       console.log(response);
-      this.courseList = response;
+      this.courseList = response.payload;
     });
 
 
+    this.role=localStorage.getItem("role");
 
   }
 
@@ -60,12 +61,10 @@ export class CourseComponent {
   getCourseDetails(courseId: any) {
     debugger;
     this.role = localStorage.getItem('role');
-    if (this.role === 'ROLE_INSTRUCTOR') {
+   
       this.route.navigate(['/viewcourse'], {
         queryParams: { courseId: courseId },
       });
-    } else {
-      this.route.navigate(['/mycourse']);
-    }
+   
   }
 }

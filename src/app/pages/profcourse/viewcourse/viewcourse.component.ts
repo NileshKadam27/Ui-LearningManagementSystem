@@ -48,7 +48,7 @@ export class ViewcourseComponent {
     videoDuration:this.videoDuration,
     videoFile:this.videoFile,
   })
-
+ role:any=''
   constructor(private fb: FormBuilder, private http: HttpClient,private profService:ProfessorService ,private route :ActivatedRoute ) {
     this.courseForm1 = this.fb.group({
       Id:['',],
@@ -82,6 +82,8 @@ export class ViewcourseComponent {
         });
 
         this.getCourses()
+
+        this.role=localStorage.getItem("role");
   }
 
 

@@ -8,17 +8,17 @@
     <section class="section">
 <h1>COURSE LIST</h1>
     </section>
-    @for(course of courseList;track course.id){
+    @for(course of courseList;track course.courseId){
   <div class="course-container" >
     <div class="course-image">
-        <img [src]=course.courseDetailList[0].courseImageLink alt="course-image">
+        <img [src]=course.courseImageLink alt="course-image">
     </div>
 
-    <div (click)="getCourseDetails(course.courseDetailList[0].courseId)" class="'course-descrption">
+    <div (click)="getCourseDetails(course.courseId)" class="'course-descrption">
 
-        <h2>{{course.courseDetailList[0].courseName}}</h2>
+        <h2>{{course.courseName}}</h2>
         <br>
-        <p>{{course.courseDetailList[0].coursedescription}}</p>
+        <p>{{course.coursedescription}}</p>
         <p><strong>Instructor:</strong> Saurabh Gupta</p>
 
           <div class="star-rating">
@@ -32,11 +32,14 @@
        <div class="add-course">
         <p> 500 Learners</p>
         <div>
-          <button  class="btn">View </button>
+          <button  class="btn" >View </button>
         </div>
-        <div>
-          <button  class="btn">Delete </button>
-        </div>
+        @if(role==='ROLE_INSTRUCTOR'){
+          <div>
+            <button  class="btn">Delete </button>
+          </div>
+        }
+  
        </div>
 
     </div>
