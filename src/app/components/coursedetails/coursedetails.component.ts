@@ -4,7 +4,7 @@ import { ProfcourseComponent } from '../../pages/profcourse/profcourse.component
 import { CommonModule } from '@angular/common';
 import { FooterComponent } from '../footer/footer.component';
 import { ProductserviceService } from '../../services/product.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 import { ProfessorService } from '../../services/professor.service';
 
 @Component({
@@ -28,7 +28,8 @@ export class CoursedetailsComponent implements OnInit {
 
   constructor(
     private professorservice: ProfessorService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -55,11 +56,28 @@ export class CoursedetailsComponent implements OnInit {
   }
 
   getCourseDetails() {
-    debugger
-    this.professorservice
-      .getCourse(this.courseId)
-      .subscribe((res) => {
-        this.courseDetails = res.payload;
+    debugger;
+    this.professorservice.getCourse(this.courseId).subscribe((res) => {
+      this.courseDetails = res.payload;
+    });
+  }
+
+  enrollCourse() {
+    if (!localStorage.getItem('authtoken')) {
+      this.router.navigate(['/login']);
+    } else {
+
+let req={
+  courseid:this.courseId
+}
+
+      this.professorservice.enrollCourse(req).subscribe((res) => {
+        if (res) {
+          this.router.navigate(['/course'], {
+            queryParams: { courseId: this.courseId },
+          });
+        }
       });
+    }
   }
 }

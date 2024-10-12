@@ -11,30 +11,30 @@ export class ProfessorService {
   course="http://localhost:8080/v1/course/byid?courseId="
   courseUrl="http://localhost:8080/v1/user/professor/course";
   courseUrlWithId="http://localhost:8080/v1/user/professor/course/mycourse?courseId=";
-
+enrollCourseUrl="http://localhost:8080/v1/user/enroll/course"
   constructor(private httpClient:HttpClient) { }
 
      postCourseDetails(course : any):Observable<any>{
 
       return this.httpClient.post<any>(this.courseUrl+'/register',course);
      }
- 
-   
+
+
      getAllCourses(courseId:any):Observable<any>{
       let headers = new HttpHeaders({
         "Content-Type":"application/json"
       })
-      let response= this.httpClient.get<any>(this.courseUrlWithId + courseId,{headers:headers});  
+      let response= this.httpClient.get<any>(this.courseUrlWithId + courseId,{headers:headers});
       return response;
      }
 
 
- 
+
      getCourse(courseId:any):Observable<any>{
       let headers = new HttpHeaders({
         "Content-Type":"application/json"
       })
-      let response= this.httpClient.get<any>(this.course + courseId,{headers:headers});  
+      let response= this.httpClient.get<any>(this.course + courseId,{headers:headers});
       return response;
      }
 
@@ -42,7 +42,7 @@ export class ProfessorService {
       let headers = new HttpHeaders({
         "Content-Type":"application/json"
       })
-      let response= this.httpClient.get<any>(this.courseUrl+'/mycourse',{headers:headers});  
+      let response= this.httpClient.get<any>(this.courseUrl+'/mycourse',{headers:headers});
       return response;
      }
 
@@ -55,5 +55,12 @@ export class ProfessorService {
       return this.httpClient.put<any>(this.courseUrl+'/'+courseId+'/video',video);
      }
 
-    
+
+     enrollCourse(courseId:any):Observable<any>{
+      return this.httpClient.post<any>(this.enrollCourseUrl,courseId);
+
+
+
+     }
+
 }

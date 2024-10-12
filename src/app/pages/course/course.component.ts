@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { HeaderComponent } from '../../components/header/header.component';
 import { HttpClient } from '@angular/common/http';
 import { ProfessorService } from '../../services/professor.service';
-import { Route, Router } from '@angular/router';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 import { FooterComponent } from '../../components/footer/footer.component';
 
 @Component({
@@ -18,19 +18,36 @@ export class CourseComponent {
   courseList: any;
 
   role: any = '';
+  courseId: any;
 
   constructor(
     private http: HttpClient,
     private profService: ProfessorService,
-    private route: Router
+    private route: Router,
+    private activatedRoute :ActivatedRoute
   ) {}
 
   ngOnInit() {
+
+    this.activatedRoute.queryParams.subscribe
+    (
+    params =>
+    {
+          this.courseId = params[
+    'courseId'
+    ];
+
+
+        });
+
     this.getToken();
-    this.profService.getAllCourses('').subscribe((response) => {
+    this.profService.getAllCourses(this.courseId?this.courseId:'').subscribe((response) => {
       console.log(response);
       this.courseList = response;
     });
+
+
+
   }
 
   getToken() {
