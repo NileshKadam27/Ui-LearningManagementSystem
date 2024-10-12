@@ -45,8 +45,8 @@ border: none;
 
 }
 .part{
-  border-right: 4px solid rgb(17, 22, 17);
-  height: 122px;
+  border-right: 3px solid rgb(239, 242, 239);
+  height: fit-content;
   padding: 20px;
 }
 
@@ -126,4 +126,4 @@ border: none;
 }
 
 .course-tabs{
-  background-color: rgb(203 203 203);}
+  background-color: rgb(227, 227, 227);}

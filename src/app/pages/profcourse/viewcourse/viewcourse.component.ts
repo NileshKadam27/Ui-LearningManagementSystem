@@ -7,11 +7,12 @@ import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Route, Router } from '@angular/router';
 import { HeaderComponent } from '../../../components/header/header.component';
 import { FooterComponent } from '../../../components/footer/footer.component';
+import { LoaderComponent } from '../../../components/loader/loader.component';
 
 @Component({
   selector: 'app-viewcourse',
   standalone: true,
-  imports: [ReactiveFormsModule,HeaderComponent,FooterComponent],
+  imports: [ReactiveFormsModule,HeaderComponent,FooterComponent,LoaderComponent],
   templateUrl: './viewcourse.component.html',
   styleUrl: './viewcourse.component.css'
 })
@@ -49,6 +50,7 @@ export class ViewcourseComponent {
     videoFile:this.videoFile,
   })
  role:any=''
+  isLoading: boolean=false;
   constructor(private fb: FormBuilder, private http: HttpClient,private profService:ProfessorService ,private route :ActivatedRoute ) {
     this.courseForm1 = this.fb.group({
       Id:['',],
@@ -77,8 +79,8 @@ export class ViewcourseComponent {
           this.courseId = params[
     'courseId'
     ];
-       
-  
+
+
         });
 
         this.getCourses()
@@ -89,10 +91,13 @@ export class ViewcourseComponent {
 
 
   getCourses(){
+    this.isLoading=true
     console.log('dd', this.courseId)
     this.profService.getAllCourses(this.courseId).subscribe((response:any)=>{
         console.log(response);
         this.courses= response;
+        this.isLoading=false
+
         this.courses=this.courses.map((ele)=>{
           ele.courseDetailList.forEach((cdl:any)=>{
           for(let i=0;i<cdl.videoBean.length-1;i++){
@@ -168,6 +173,8 @@ formData.append("videoFile",this.courseForm1.value.videoFile)
         }
 
     submitVideo(){
+      this.isLoading=true
+
         const formData = new FormData();
         Object.keys(this.courseForm.value).forEach(key => {
           formData.append(key, this.videoForm1.value[key]);
@@ -176,8 +183,10 @@ formData.append("videoFile",this.courseForm1.value.videoFile)
         this.profService.addVideo(formData,this.courseId).subscribe((response)=>{
           console.log(response);
           this.addVideo =false
+          this.isLoading=false
+
           this.getCourses()
-          
+
         })
 
 

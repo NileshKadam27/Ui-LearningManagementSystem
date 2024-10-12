@@ -4,11 +4,13 @@ import { HttpClient } from '@angular/common/http';
 import { ProfessorService } from '../../services/professor.service';
 import { ActivatedRoute, Route, Router } from '@angular/router';
 import { FooterComponent } from '../../components/footer/footer.component';
+import { LoaderComponent } from '../../components/loader/loader.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-course',
   standalone: true,
-  imports: [HeaderComponent, FooterComponent],
+  imports: [HeaderComponent, CommonModule, FooterComponent, LoaderComponent],
   templateUrl: './course.component.html',
   styleUrl: './course.component.css',
 })
@@ -19,6 +21,7 @@ export class CourseComponent {
 
   role: any = '';
   courseId: any;
+  isLoading: boolean = false;
 
   constructor(
     private http: HttpClient,
@@ -38,13 +41,14 @@ export class CourseComponent {
         this.getCoursesByRole();
       }
     });
-
   }
 
   getCoursesByRole() {
+    this.isLoading = true;
     this.profService.getCourses().subscribe((response) => {
       console.log(response);
       this.courseList = response.payload;
+      this.isLoading = false;
     });
   }
 
@@ -56,7 +60,6 @@ export class CourseComponent {
   }
 
   getCourseDetails(courseId: any) {
-    debugger;
     this.role = localStorage.getItem('role');
     this.route.navigate(['/viewcourse'], {
       queryParams: { courseId: courseId },
@@ -64,8 +67,11 @@ export class CourseComponent {
   }
 
   getAllCourseWithoutLogin() {
+    this.isLoading = true;
+
     this.profService.getCourseListWithouLogin().subscribe((res) => {
       this.courseList = res.payload;
+      this.isLoading = false;
     });
   }
 }

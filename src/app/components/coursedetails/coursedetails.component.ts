@@ -6,6 +6,7 @@ import { FooterComponent } from '../footer/footer.component';
 import { ProductserviceService } from '../../services/product.service';
 import { ActivatedRoute, Route, Router } from '@angular/router';
 import { ProfessorService } from '../../services/professor.service';
+import { LoaderComponent } from '../loader/loader.component';
 
 @Component({
   selector: 'app-coursedetails',
@@ -15,6 +16,7 @@ import { ProfessorService } from '../../services/professor.service';
     ProfcourseComponent,
     CommonModule,
     FooterComponent,
+    LoaderComponent,
   ],
   templateUrl: './coursedetails.component.html',
   styleUrl: './coursedetails.component.css',
@@ -25,15 +27,13 @@ export class CoursedetailsComponent implements OnInit {
   showTrainerTab: boolean = false;
   courseId: any;
   courseDetails: any;
+  isLoading: boolean = false;
 
   constructor(
     private professorservice: ProfessorService,
     private route: ActivatedRoute,
     private router: Router
   ) {}
-
-
-
 
   // ngOnChanges(): void {
   //   this.route.queryParams.subscribe((params) => {
@@ -45,13 +45,10 @@ export class CoursedetailsComponent implements OnInit {
 
   // }
 
-
-
   ngOnInit(): void {
     this.route.queryParams.subscribe((params) => {
       this.courseId = params['courseId'];
       this.getCourseDetails();
-
     });
   }
 
@@ -72,9 +69,11 @@ export class CoursedetailsComponent implements OnInit {
   }
 
   getCourseDetails() {
+    this.isLoading = true;
     debugger;
     this.professorservice.getCourse(this.courseId).subscribe((res) => {
       this.courseDetails = res.payload;
+      this.isLoading = false;
     });
   }
 
@@ -82,10 +81,9 @@ export class CoursedetailsComponent implements OnInit {
     if (!localStorage.getItem('authtoken')) {
       this.router.navigate(['/login']);
     } else {
-
-let req={
-  courseid:this.courseId
-}
+      let req = {
+        courseid: this.courseId,
+      };
 
       this.professorservice.enrollCourse(req).subscribe((res) => {
         if (res) {
