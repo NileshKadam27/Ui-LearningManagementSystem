@@ -8,7 +8,7 @@ import { FooterComponent } from '../../components/footer/footer.component';
 @Component({
   selector: 'app-course',
   standalone: true,
-  imports: [HeaderComponent,FooterComponent],
+  imports: [HeaderComponent, FooterComponent],
   templateUrl: './course.component.html',
   styleUrl: './course.component.css',
 })
@@ -24,31 +24,28 @@ export class CourseComponent {
     private http: HttpClient,
     private profService: ProfessorService,
     private route: Router,
-    private activatedRoute :ActivatedRoute
+    private activatedRoute: ActivatedRoute
   ) {}
 
   ngOnInit() {
-
-    this.activatedRoute.queryParams.subscribe
-    (
-    params =>
-    {
-          this.courseId = params[
-    'courseId'
-    ];
-
-
-        });
-
+    this.role = localStorage.getItem('role');
     this.getToken();
+    this.activatedRoute.queryParams.subscribe((params) => {
+      this.courseId = params['courseId'];
+      if (this.courseId === 'all') {
+        this.getAllCourseWithoutLogin();
+      } else {
+        this.getCoursesByRole();
+      }
+    });
+
+  }
+
+  getCoursesByRole() {
     this.profService.getCourses().subscribe((response) => {
       console.log(response);
       this.courseList = response.payload;
     });
-
-
-    this.role=localStorage.getItem("role");
-
   }
 
   getToken() {
@@ -61,10 +58,14 @@ export class CourseComponent {
   getCourseDetails(courseId: any) {
     debugger;
     this.role = localStorage.getItem('role');
-   
-      this.route.navigate(['/viewcourse'], {
-        queryParams: { courseId: courseId },
-      });
-   
+    this.route.navigate(['/viewcourse'], {
+      queryParams: { courseId: courseId },
+    });
+  }
+
+  getAllCourseWithoutLogin() {
+    this.profService.getCourseListWithouLogin().subscribe((res) => {
+      this.courseList = res.payload;
+    });
   }
 }

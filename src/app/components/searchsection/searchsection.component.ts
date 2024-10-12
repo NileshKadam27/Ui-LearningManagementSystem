@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-searchsection',
@@ -9,7 +10,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SearchsectionComponent implements OnInit {
 
-  constructor() { }
+  constructor( private route:Router ) { }
 
   ngOnInit() {
   }
@@ -19,5 +20,7 @@ export class SearchsectionComponent implements OnInit {
   goToCourseList(){
 
 
-  }
+    this.route.navigate(['/course'], {
+      queryParams: { courseId: 'all' },
+    });  }
 }

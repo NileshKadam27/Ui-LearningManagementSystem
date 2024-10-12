@@ -171,9 +171,16 @@ export class HeaderComponent implements OnInit {
   }
 
   navigate(courseId:any) {
+    debugger
     this.route.navigate(['/coursedetails'], {queryParams: {courseId:courseId} });
 
-  
+    window.scroll({
+      top: 600,
+      left: 600,
+      behavior: "smooth",
+    });
+
+
   }
 
   fetchData() {

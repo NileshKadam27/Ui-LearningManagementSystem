@@ -13,6 +13,10 @@ export class ProfessorService {
   courseUrlWithId="http://localhost:8080/v1/user/professor/course/mycourse?courseId=";
 enrollCourseUrl="http://localhost:8080/v1/user/enroll/course"
 getCourseUrl="http://localhost:8080/v1/course/getcourses";
+
+
+courseLitWithouLogin="http://localhost:8080/v1/course/details";
+
   constructor(private httpClient:HttpClient) { }
 
      postCourseDetails(course : any):Observable<any>{
@@ -69,6 +73,11 @@ getCourseUrl="http://localhost:8080/v1/course/getcourses";
       return this.httpClient.post<any>(this.enrollCourseUrl,courseId);
 
 
+
+     }
+
+     getCourseListWithouLogin():Observable<any>{
+      return this.httpClient.get<any>(this.courseLitWithouLogin);
 
      }
 

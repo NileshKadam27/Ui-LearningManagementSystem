@@ -1,7 +1,7 @@
 <app-header [isLogin]="true"></app-header>
 
 <section class="section">
-  <h1>VIEW COURSE</h1>
+  <h1> COURSE DETAILS</h1>
 </section>
 
 @if(addVideo===true){
@@ -90,7 +90,7 @@
       @for(courseDet of course.courseDetailList;track courseDet.courseId){
 
       <h4>{{ courseDet.courseName }}</h4>
-      
+
       <p>{{ courseDet.coursedescription }}</p>
       @if(role=='ROLE_INSTRUCTOR'){
         <button

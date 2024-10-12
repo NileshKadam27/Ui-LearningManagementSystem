@@ -2,13 +2,11 @@
 
 <div class="course-details">
   <div>
-    <h1>ITIL® 4 Foundation Certification Training Course</h1>
+    <h1>{{courseDetails?.courseName}}</h1>
   </div>
 
   <div>
-    Trusted by 1000s of global organizations, NovelVista is the leading Axelos
-    Accredited Training Organization (ATO) to conduct ITIL® 4 Foundation
-    Training & Certification Course.
+  {{courseDetails?.coursedescription}}
   </div>
 
   <div class="enroll">
@@ -35,7 +33,6 @@
 
 <div class="tabs">
   <div (click)="showTabs('1')" [ngClass]="{'tab-info selected' : showInfoTab, 'tab-info notSelected': !showInfoTab}">COURSE INFO</div>
-  <div  (click)="showTabs('2')"[ngClass]="{'tab-info selected' : showCiruclamTab, 'tab-info notSelected': !showCiruclamTab}">CIRCULLAN INFO </div>
   <div  (click)="showTabs('3')"[ngClass]="{'tab-info selected' : showTrainerTab, 'tab-info notSelected': !showTrainerTab}">TRAINER INFO </div>
 
   <!-- <div (click)="showTabs('3')[ngClass]="{'tab-info selected' : showTrainerTab, 'tab-info notSelected': !showTrainerTab}">TRAINER INFO</div> -->
@@ -46,20 +43,7 @@
 <section  *ngIf="showInfoTab" class="courseinfo">
   <h1>Course Info</h1>
 
-  ITIL® 4 Foundation Training and Certification Overview ITIL V4 Certification
-  helps you understand the value, cost, and risk in IT Service Management and
-  major restructuring of the ITIL framework. ITIL Foundation Certification
-  showcases procedures and tasks in different checklists based on organization
-  and technology and used in organizational strategies. Our entry-level
-  certificate will help you gain an in-depth understanding of the principal
-  practices, components, and strategies of ITIL V4. ITIL V4 helps businesses
-  develop the baseline from which they can prepare, create, and implement their
-  strategies. It is also used to elaborate compliance and major improvement.
-  With our certification, you can successfully enable a service organization's
-  competency capacity as well as confidence for action. Our ITIL V4 Foundation
-  Certification will help you understand a set of detailed practices for
-  information technology service management, which concentrates on aligning IT
-  services with business requirements.
+ {{courseDetails?.coursedescription}}
 
   <div class="key-features" >
     Key Features
@@ -81,45 +65,13 @@
 
 
 
-<section  *ngIf="showCiruclamTab" class="courseinfo">
-  <h1>Circullam </h1>
 
-  ITIL® 4 Foundation Training and Certification Overview ITIL V4 Certification
-  helps you understand the value, cost, and risk in IT Service Management and
-  major restructuring of the ITIL framework. ITIL Foundation Certification
-  showcases procedures and tasks in different checklists based on organization
-  and technology and used in organizational strategies. Our entry-level
-  certificate will help you gain an in-depth understanding of the principal
-  practices, components, and strategies of ITIL V4. ITIL V4 helps businesses
-  develop the baseline from which they can prepare, create, and implement their
-  strategies. It is also used to elaborate compliance and major improvement.
-  With our certification, you can successfully enable a service organization's
-  competency capacity as well as confidence for action. Our ITIL V4 Foundation
-  Certification will help you understand a set of detailed practices for
-  information technology service management, which concentrates on aligning IT
-  services with business requirements.
-
-  <div class="key-features" >
-    Key Features
-    <ul>
-      <li>Global Recognition For IT Services.</li>
-      <li>Global Recognition For IT Services.</li>
-      <li>Global Recognition For IT Services.</li>
-      <li>Global Recognition For IT Services.</li>
-      <li>Global Recognition For IT Services.</li>
-      <li>Global Recognition For IT Services.</li>
-
-      <li>Flexible Learning Options with Online and Classroom Training</li>
-    </ul>
-  </div>
-
-
-
-</section>
 
 
 <section  *ngIf="showTrainerTab"  class="courseinfo">
-  <h1>Trainer</h1>
+  Trainer:<h1>{{courseDetails?.professorName}}</h1>
+
+
 
   ITIL® 4 Foundation Training and Certification Overview ITIL V4 Certification
   helps you understand the value, cost, and risk in IT Service Management and

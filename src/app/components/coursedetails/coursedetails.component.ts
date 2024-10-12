@@ -32,11 +32,27 @@ export class CoursedetailsComponent implements OnInit {
     private router: Router
   ) {}
 
+
+
+
+  // ngOnChanges(): void {
+  //   this.route.queryParams.subscribe((params) => {
+
+  //     this.courseId = params['courseId'];
+  //     this.getCourseDetails();
+
+  //   });
+
+  // }
+
+
+
   ngOnInit(): void {
     this.route.queryParams.subscribe((params) => {
       this.courseId = params['courseId'];
+      this.getCourseDetails();
+
     });
-    this.getCourseDetails();
   }
 
   showTabs(viewTab: any) {
