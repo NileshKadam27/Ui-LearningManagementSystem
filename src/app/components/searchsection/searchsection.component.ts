@@ -16,5 +16,8 @@ export class SearchsectionComponent implements OnInit {
 
 
 
+  goToCourseList(){
 
+
+  }
 }

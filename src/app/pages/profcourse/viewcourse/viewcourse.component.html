@@ -1,87 +1,141 @@
 <app-header [isLogin]="true"></app-header>
 
+<section class="section">
+  <h1>VIEW COURSE</h1>
+</section>
+
 @if(addVideo===true){
 
-  <div class="modal">
-      <form   method="POST"  class="form" [formGroup]="videoForm1" enctype="multipart/form-data" >
-<input  class="inp"   placeholder="Video Title" type="text"  formControlName="videoTitle" required>
-<textarea  class="inp"   placeholder="Video Description" formControlName="videoDescription" required></textarea>
-<input  class="inp" type="number"  placeholder="Video Duration (in minutes)"  formControlName="videoDuration" required> 
-<label for="videoFile">Upload Video</label>
-<input type="file" (change)="onFileChange($event)" required> 
-<button  class="btn" type="submit"  (click)="submitVideo()" >Submit</button>
-<button type="button" class="btn" (click)="addVideo = false">Cancel</button>
-</form>
+<div class="modal">
+  <form
+    method="POST"
+    class="form"
+    [formGroup]="videoForm1"
+    enctype="multipart/form-data"
+  >
+    <input
+      class="inp"
+      placeholder="Video Title"
+      type="text"
+      formControlName="videoTitle"
+      required
+    />
+    <textarea
+      class="inp"
+      placeholder="Video Description"
+      formControlName="videoDescription"
+      required
+    ></textarea>
+    <input
+      class="inp"
+      type="number"
+      placeholder="Video Duration (in minutes)"
+      formControlName="videoDuration"
+      required
+    />
+    <label for="videoFile">Upload Video</label>
+    <input type="file" (change)="onFileChange($event)" required />
+    <button class="btn" type="submit" (click)="submitVideo()">Submit</button>
+    <button type="button" class="btn" (click)="addVideo = false">Cancel</button>
+  </form>
+</div>
+} @if(updateModalVisible===true) {
+<div class="modal">
+  <form
+    method="POST"
+    class="form"
+    [formGroup]="courseForm1"
+    enctype="multipart/form-data"
+  >
+    <input
+      type="text"
+      placeholder="Video Title"
+      id="videoTitle"
+      formControlName="videoTitle"
+      required
+    />
+    <textarea
+      id="videoDescription"
+      placeholder="Video Description"
+      formControlName="videoDescription"
+      required
+    ></textarea>
+    <input
+      type="number"
+      placeholder="Video Duration (in minutes)"
+      id="videoDuration"
+      formControlName="videoDuration"
+      required
+    />
+    <label for="videoFile">Upload Video</label>
+    <input
+      type="file"
+      id="videoFile"
+      (change)="onFileChange($event)"
+      required
+    />
+    <button type="submit" class="btn" (click)="updateCourse()">Update</button>
+    <button type="button" class="btn" (click)="updateModalVisible = false">
+      Cancel
+    </button>
+  </form>
+</div>
+} @if(updateModalVisible===false && addVideo === false){
+<div class="container">
+  <div class="course-category">
+    @for(course of courses;track course.id){
+
+    <div class="course-details">
+      <h3>{{ course.courseCategory }}</h3>
+      @for(courseDet of course.courseDetailList;track courseDet.courseId){
+
+      <h4>{{ courseDet.courseName }}</h4>
+      <p>{{ courseDet.coursedescription }}</p>
+        <button
+        class="btn"
+        type="button"
+        (click)="enableVideoDets(courseDet.courseId)"
+      >
+        Upload video
+      </button>
+
+
+      <!-- <button (click)="editCourse(courseDet)">Update</button>  -->
+
+      <ul class="video-details">
+        @for(vid of courseDet.videoBean;track vid.videoId){
+
+        <li>
+          <div class="video">
+            <div>
+              <p class="title">{{ vid.videoId }}.{{ vid.videoTitle }}</p>
+              <video controls>
+                <source [src]="vid.videoLink" />
+              </video>
+              <p>{{ vid.videoDuration }}</p>
+              <p>{{ vid.videoDescription }}</p>
+            </div>
+            <div>
+
+
+
+              <i               (click)="editCourse(courseDet, vid)"
+               class="fa-solid fa-pen-to-square fa-2xl">
+              </i>
+
+            </div>
+          </div>
+        </li>
+
+        }
+      </ul>
+
+      }
+    </div>
+
+    }
+  </div>
 </div>
 }
-
-@if(updateModalVisible===true)
-{
-  <div class="modal"  >
-        <form   method="POST"  class="form" [formGroup]="courseForm1" enctype="multipart/form-data" >
-              <input type="text" placeholder="Video Title" id="videoTitle" formControlName="videoTitle" required>
-              <textarea id="videoDescription" placeholder="Video Description" formControlName="videoDescription" required></textarea>
-              <input type="number" placeholder="Video Duration (in minutes)" id="videoDuration" formControlName="videoDuration" required>
-              <label for="videoFile">Upload Video</label>
-              <input type="file" id="videoFile" (change)="onFileChange($event)" required>
-          <button type="submit"  class="btn" (click)="updateCourse()">Update</button>
-          <button type="button" class="btn" (click)="updateModalVisible = false">Cancel</button>
-      </form>
-      
-  </div>
-}
-
-
-@if(updateModalVisible===false && addVideo === false){
-<div class="container">
-
-    <div class="course-category">
-      @for(course of courses;track course.id){
-  
-         <div class="course-details">
-            <h3>{{course.courseCategory}}</h3>
-         @for(courseDet of course.courseDetailList;track courseDet.courseId){
-            
-             <h4>{{courseDet.courseName}}</h4>
-             <p>{{courseDet.coursedescription}}</p>
-             <h4>Videos : </h4>
-
-           <!-- <button (click)="editCourse(courseDet)">Update</button>  -->
-         
-             <ul class="video-details">
-             @for(vid of courseDet.videoBean;track vid.videoId){
-             
-                <li >
-                    <div class="video">
-                    <div>
-                    <p class="title">{{vid.videoId}}.{{vid.videoTitle}}</p>
-                      <video  controls>
-                        <source [src]="vid.videoLink" />
-                    </video>
-                     <p>{{vid.videoDuration}}</p>
-                     <p>{{vid.videoDescription}}</p>    
-                    </div>
-                    <div>
-                     <button type="button" class="btn" (click)="editCourse(courseDet,vid)">update video details</button>
-                    </div>
-                  </div>
-                    </li> 
-                
-         
-             }
-         </ul>
-         <button type="button" class="btn" (click)="enableVideoDets(courseDet.courseId)"> add video</button>
-         }
-        
-     </div>
-    
-     }
- </div>
- 
- </div>
-}
-
-
-
 
 <app-footer></app-footer>

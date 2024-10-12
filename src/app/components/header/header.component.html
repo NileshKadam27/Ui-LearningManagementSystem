@@ -1,5 +1,5 @@
 <div class="header">
-  <div class="logo">
+  <div  (click)="goToLanding()"class="logo">
     <h1>LMS</h1>
     <p>Developing Professionals</p>
   </div>
@@ -9,7 +9,7 @@
       <i class="fa-solid fa-list"></i> Courses
     </button>
     <div class="navlinks">
-      <p>About us</p>
+      <p (click)="scrollToAboutUs()">About us</p>
       @if(isLogin){
         @if(role==='ROLE_STUDENT'){
           <p (click)="mycourse()"> My Courses
@@ -20,12 +20,12 @@
           <p (click)="addCourse()"> Add course</p>
         }
         <p><i class="fa fa-user-circle fa-2x" aria-hidden="true" (click)="logOut()"></i></p>
-       
+
 
       }@else{
         <p (click)="register()">Register</p>
         <p (click)="login()">Login</p>
-        
+
       }
 
 

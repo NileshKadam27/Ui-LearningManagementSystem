@@ -6,7 +6,7 @@
 <div class="main-continer">
 
     <section class="section">
-
+<h1>COURSE LIST</h1>
     </section>
     @for(course of courseList;track course.id){
   <div class="course-container" >
@@ -29,8 +29,27 @@
             <i class="fas fa-star-half-alt"></i>
           </div>
        <br>
-          <p> 500 Learners</p>
+       <div class="add-course">
+        <p> 500 Learners</p>
+        <div>
+          <button  class="btn">View </button>
+        </div>
+        <div>
+          <button  class="btn">Delete </button>
+        </div>
+       </div>
+
     </div>
+
+
+
+
+
+
     </div>
 }
 </div>
+<app-footer></app-footer>
+
+
+

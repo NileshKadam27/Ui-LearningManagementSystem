@@ -3,11 +3,12 @@ import { HeaderComponent } from '../../components/header/header.component';
 import { HttpClient } from '@angular/common/http';
 import { ProfessorService } from '../../services/professor.service';
 import { Route, Router } from '@angular/router';
+import { FooterComponent } from '../../components/footer/footer.component';
 
 @Component({
   selector: 'app-course',
   standalone: true,
-  imports: [HeaderComponent],
+  imports: [HeaderComponent,FooterComponent],
   templateUrl: './course.component.html',
   styleUrl: './course.component.css',
 })

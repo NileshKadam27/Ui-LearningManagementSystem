@@ -21,6 +21,14 @@
 }
 
 
+.section{
+    width: 100%;
+    height: 70px;
+    background-color: rgb(132, 132, 135);
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
 
 .modal {
     position: fixed;
@@ -34,7 +42,7 @@
     align-items: center;
     z-index: 1000;
   }
-  
+
   .modal .form {
     background: white;
     padding: 20px;
@@ -43,13 +51,13 @@
     max-width: 400px;
     width: 100%;
   }
-  
+
   /* Form input styles */
   label {
     display: block;
     margin: 10px 0 5px;
   }
-  
+
   input, textarea {
     width: 100%;
     padding: 10px;
@@ -57,14 +65,14 @@
     border-radius: 5px;
     margin-bottom: 10px;
   }
-  
+
   /* Button in modal */
   /* .modal button {
     width: 100%;
-  
+
   } */
-  
-  
+
+
   .form .btn
   {
     width: 100%;
@@ -80,20 +88,16 @@
     justify-content: space-between;
       margin-right: 50px;
       margin-top: 20px;
-      
-  }
-  
 
-  
+  }
+
+
+
   .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 40px 20px;
-      background-color: #f9f9f9;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    
+
+
     }
-  
+
     .container .btn
   {
     display: flex;
@@ -106,25 +110,30 @@
       color: white;
       cursor: pointer;
       transition: .3s;
-      
+
   }
-  
+
   .video {
     display: flex;
     flex-direction: column;
     align-items: start;
     justify-content: space-between;
-  
+
   }
-  
-  
+
+
   .btn{
-    display: flex;
-    justify-content: flex-end;
-  }
-     
-    
-  
+    text-indent: none;
+    border-radius: 10px;
+    border: none;
+    background-color: #111213;
+    font-size: larger;
+    color: #f6f6f6;
+    cursor: pointer;
+   }
+
+
+
     .course-category h2 {
       font-size: 50px;
       color: #333;
@@ -136,90 +145,103 @@
       font-weight: bold;
       display: flex;
     }
-     
-    
+
+
     .course-details {
       background-color: white;
       border: 1px solid #ddd;
       border-radius: 8px;
       padding: 20px;
-      margin-top: 50px;
-      margin-bottom: 30px;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
       transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      /* justify-content: space-evenly; */
+      align-items: normal;
+      row-gap: 10px;
     }
-  
-  
+
+
     .video{
       width: 100%;
       background-color: white;
       border: 1px solid #ddd;
       border-radius: 8px;
       padding: 20px;
-      margin-top: 50px;
-      margin-bottom: 30px;
+      /* margin-top: 50px; */
+      /* margin-bottom: 30px; */
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
       transition: all 0.3s ease;
       display: flex;
-      justify-content: space-between;
+      justify-content: center;
       flex-direction: row;
     }
-     
-    
+
+
     .course-details:hover {
       transform: translateY(-5px);
       box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
     }
-     
-    
+
+
     .course-details h3 {
       font-size: 22px;
       color: #333;
       margin-bottom: 10px;
       text-transform: capitalize;
     }
-     
-    
+
+
     .course-details p {
       font-size: 16px;
       line-height: 1.6;
       color: #1a1f1e;
       margin-bottom: 20px;
     }
-  
-  
-   
-     
-    
+
+
+
+
+
     .course-details h4 {
       font-size: 18px;
       margin-bottom: 15px;
       color: #007bff;
     }
-     
-    
+
+
     ul {
       list-style-type: none;
       padding: 0;
     }
-     
-    
+
+
     .title {
       margin-bottom: 10px;
       font-size: 16px;
       font-weight: bold;
-    } 
-     
-    
+    }
+
+
     ul li a {
       color: #007bff;
       text-decoration: none;
       transition: color 0.3s ease;
     }
-     
+
     ul li a:hover {
       color: #0056b3;
       text-decoration: underline;
-    } 
-     
-    
+    }
+
+.video-details{
+
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  justify-content: center;
+  column-gap: 50px;
+  padding: 40px;
+  border: 1px solid;
+  box-shadow: 3px 3px 3px 3px lightgray;
+}

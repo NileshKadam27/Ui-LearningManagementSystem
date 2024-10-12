@@ -205,4 +205,19 @@ export class HeaderComponent implements OnInit {
   viewCourse(){
     this.route.navigate(["/course"])
   }
+
+
+  scrollToAboutUs(){
+    window.scroll({
+      top: 600,
+      left: 600,
+      behavior: "smooth",
+    });
+  }
+
+
+  goToLanding(){
+    this.route.navigate([""])
+
+  }
 }
