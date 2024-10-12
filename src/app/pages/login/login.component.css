@@ -27,7 +27,7 @@
 .form > input
 {
     height: 40px;
-    text-indent: 20px;
+    text-indent: 10px;
     border-radius: 10px;
     border: 1px solid gray;
 }
@@ -48,6 +48,7 @@
   width: 104%;
   display: flex;
   justify-content: space-between;
+
 }
 
 .pwd

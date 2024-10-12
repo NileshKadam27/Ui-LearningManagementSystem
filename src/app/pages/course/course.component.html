@@ -9,6 +9,23 @@
     <section class="section">
 <h1>COURSE LIST</h1>
     </section>
+
+
+<section class="chart">
+
+<canvas id="enrollmentChart" style="box-sizing: border-box;height: 100%;width: 100%;"></canvas>
+
+
+
+</section>
+
+
+
+
+
+
+
+
     @for(course of courseList;track course.courseId){
   <div class="course-container" >
     <div class="course-image">
@@ -20,7 +37,7 @@
         <h2>{{course.courseName}}</h2>
         <br>
         <p>{{course.coursedescription}}</p>
-        <p><strong>Instructor:</strong> Saurabh Gupta</p>
+        <p><strong>Instructor:</strong> {{course.professorName}}</p>
 
           <div class="star-rating">
             <i class="fas fa-star"></i>

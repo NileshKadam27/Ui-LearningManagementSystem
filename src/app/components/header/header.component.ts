@@ -163,22 +163,20 @@ export class HeaderComponent implements OnInit {
     this.showCourses = true;
   }
 
-  getSubCategory(courses: any,id:any) {
+  getSubCategory(courses: any) {
     debugger
-    this.selctedSubcategory = courses.filter(
-      (a:any) => a.courseId ===id
-    )
+    this.selctedSubcategory = courses
   }
 
   navigate(courseId:any) {
     debugger
     this.route.navigate(['/coursedetails'], {queryParams: {courseId:courseId} });
 
-    window.scroll({
-      top: 600,
-      left: 600,
-      behavior: "smooth",
-    });
+    // window.scroll({
+    //   top: 600,
+    //   left: 600,
+    //   behavior: "smooth",
+    // });
 
 
   }
