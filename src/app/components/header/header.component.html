@@ -19,7 +19,19 @@
           <p (click)="viewCourse()"> View courses</p>
           <p (click)="addCourse()"> Add course</p>
         }
-        <p><i class="fa fa-user-circle fa-2x" aria-hidden="true" (click)="logOut()"></i></p>
+        <div class="profile-logo">
+          <div>
+            <p><i class="fa fa-user-circle fa-2x" aria-hidden="true" (click)="profile()"></i></p>
+          </div>
+          @if(showProfile){
+            <div class="profile-div" (mouseleave)="profile()">
+              <p>Hi, user</p>
+              <p>My profile</p>
+              <p (click)="logOut()">logout</p>
+            </div>
+          }
+        
+        </div>
 
 
       }@else{

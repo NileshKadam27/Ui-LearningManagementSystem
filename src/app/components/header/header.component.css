@@ -118,3 +118,20 @@ p{
   cursor: pointer;
 
 }
+
+.profile-logo{
+  position: relative;
+
+}
+
+.profile-div{
+  position: absolute;
+  top: 135%;
+  right: -10px;
+  background-color: white;
+  border: 1px solid #ccc;
+  padding: 10px;
+  z-index: 1000;
+  width: 150px;
+  height: 150px;
+}

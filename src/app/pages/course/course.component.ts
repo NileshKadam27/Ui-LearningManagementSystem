@@ -8,6 +8,7 @@ import { LoaderComponent } from '../../components/loader/loader.component';
 import { CommonModule } from '@angular/common';
 import Chart from 'chart.js/auto';
 import {  BarElement, BarController, CategoryScale, Decimation, Filler, Legend, Title, Tooltip} from 'chart.js';
+import { Dashboard, DashboardDetails } from '../../interfaces/Dashboard';
 
 
 
@@ -28,7 +29,10 @@ export class CourseComponent {
   role: any = '';
   courseId: any;
   isLoading: boolean = false;
-
+  dashboardDetails:DashboardDetails[]=[];
+  courseNameList:any
+  studentCountList:any
+  
   constructor(
     private http: HttpClient,
     private profService: ProfessorService,
@@ -40,6 +44,21 @@ export class CourseComponent {
     this.createChart();
 
     this.role = localStorage.getItem('role');
+    if(this.role==='ROLE_INSTRUCTOR'){
+      this.profService.getDashboard().subscribe(res=>{
+        this.dashboardDetails = res.payload;
+        console.log(this.dashboardDetails )
+       this.dashboardDetails.map(d =>
+        this.courseNameList = d.courseName
+       );
+
+       this.studentCountList=this.dashboardDetails.map(d =>
+        d.numberStudentEnrolled);
+
+      });
+
+      console.log('course'+this.courseNameList)
+    }
     this.getToken();
     this.activatedRoute.queryParams.subscribe((params) => {
       this.courseId = params['courseId'];
@@ -102,10 +121,10 @@ export class CourseComponent {
     this.chart = new Chart(ctx, {
       type: 'bar',
       data: {
-        labels: ['Course 1', 'Course 2', 'Course 3', 'Course 4', 'Course 5'], // X-axis labels
+        labels: this.courseNameList,
         datasets: [{
           label: 'Enrollments',
-          data: [50, 75, 100, 40, 90], // Y-axis data
+          data: this.studentCountList,
           backgroundColor: 'rgba(75, 192, 192, 0.2)',
           borderColor: 'rgba(75, 192, 192, 1)',
           borderWidth: 1

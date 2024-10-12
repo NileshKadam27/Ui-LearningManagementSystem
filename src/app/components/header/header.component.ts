@@ -15,7 +15,7 @@ import { LandingpageComponent } from '../../pages/landingpage/landingpage.compon
 export class HeaderComponent implements OnInit {
   showCategories: boolean = false;
   showCourses: boolean = false;
-
+showProfile = false;
   @Input() isLogin:boolean=false;
   role:any=''
   allCategoriesAndSubCategories:any;
@@ -224,5 +224,10 @@ export class HeaderComponent implements OnInit {
   goToLanding(){
     this.route.navigate([""])
 
+  }
+
+  profile(){
+
+    this.showProfile=!this.showProfile
   }
 }

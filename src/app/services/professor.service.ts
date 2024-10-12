@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { CourseCategory } from '../interfaces/profcourse';
+import { Dashboard } from '../interfaces/Dashboard';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,7 @@ export class ProfessorService {
   courseUrlWithId="http://localhost:8080/v1/user/professor/course/mycourse?courseId=";
 enrollCourseUrl="http://localhost:8080/v1/user/enroll/course"
 getCourseUrl="http://localhost:8080/v1/course/getcourses";
+getDashboardUrl="http://localhost:8080/v1/course/dashboard/details"
 
 
 courseLitWithouLogin="http://localhost:8080/v1/course/details";
@@ -78,6 +80,11 @@ courseLitWithouLogin="http://localhost:8080/v1/course/details";
 
      getCourseListWithouLogin():Observable<any>{
       return this.httpClient.get<any>(this.courseLitWithouLogin);
+
+     }
+
+     getDashboard():Observable<Dashboard>{
+      return this.httpClient.get<Dashboard>(this.getDashboardUrl);
 
      }
 
