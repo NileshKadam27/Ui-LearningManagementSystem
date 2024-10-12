@@ -1,11 +1,10 @@
 <app-header [isLogin]="true"></app-header>
 
 <section class="section">
-  <h1> COURSE DETAILS</h1>
+  <h1>COURSE DETAILS</h1>
 </section>
 
 @if(addVideo===true){
-
 <div class="modal">
   <form
     method="POST"
@@ -13,6 +12,8 @@
     [formGroup]="videoForm1"
     enctype="multipart/form-data"
   >
+
+  <label>Video Title</label>
     <input
       class="inp"
       placeholder="Video Title"
@@ -20,19 +21,22 @@
       formControlName="videoTitle"
       required
     />
+
+    <label>Video Description</label>
+
     <textarea
       class="inp"
       placeholder="Video Description"
       formControlName="videoDescription"
       required
     ></textarea>
-    <input
+    <!-- <input
       class="inp"
       type="number"
       placeholder="Video Duration (in minutes)"
       formControlName="videoDuration"
       required
-    />
+    /> -->
     <label for="videoFile">Upload Video</label>
     <input type="file" (change)="onFileChange($event)" required />
     <button class="btn" type="submit" (click)="submitVideo()">Submit</button>
@@ -47,6 +51,8 @@
     [formGroup]="courseForm1"
     enctype="multipart/form-data"
   >
+
+  <label>Video Title</label>
     <input
       type="text"
       placeholder="Video Title"
@@ -54,19 +60,23 @@
       formControlName="videoTitle"
       required
     />
+
+    <label>Video Description</label>
+
     <textarea
+    style="height: 120px;"
       id="videoDescription"
       placeholder="Video Description"
       formControlName="videoDescription"
       required
     ></textarea>
-    <input
+    <!-- <input
       type="number"
       placeholder="Video Duration (in minutes)"
       id="videoDuration"
       formControlName="videoDuration"
       required
-    />
+    /> -->
     <label for="videoFile">Upload Video</label>
     <input
       type="file"
@@ -80,27 +90,34 @@
     </button>
   </form>
 </div>
-} @if(updateModalVisible===false && addVideo === false){
+
+}
 <div class="container">
   <div class="course-category">
     @for(course of courses;track course.id){
 
     <div class="course-details">
-      <h3>{{ course.courseCategory }}</h3>
+      <h2>{{ course.courseCategory }}</h2>
       @for(courseDet of course.courseDetailList;track courseDet.courseId){
 
-      <h4>{{ courseDet.courseName }}</h4>
-
+        <div class="course-desc">
+          <h4 >{{ courseDet.courseName }}</h4>
       <p>{{ courseDet.coursedescription }}</p>
-      @if(role=='ROLE_INSTRUCTOR'){
-        <button
-        class="btn"
-        type="button"
-        (click)="enableVideoDets(courseDet.courseId)"
-      >
-        Upload video
-      </button>
+        </div>
+
+
+        <div class="upload-video">
+<h1>Videos</h1>
+@if(role=='ROLE_INSTRUCTOR'){
+          <button
+          class="btn"
+          type="button"
+          (click)="enableVideoDets(courseDet.courseId)"
+        >
+          Upload video
+        </button>
       }
+        </div>
 
 
 
@@ -112,19 +129,26 @@
         <li>
           <div class="video">
             <div>
-              <p class="title">{{ vid.videoId }}.{{ vid.videoTitle }}</p>
-              <video controls>
-                <source [src]="vid.videoLink" />
-              </video>
-              <p>{{ vid.videoDuration }}</p>
-              <p>{{ vid.videoDescription }}</p>
+              <h3 class="title">{{ vid.videoId }}.{{ vid.videoTitle }}</h3>
+
+              <div class="video-view">
+                <div>
+                  <video controls>
+                    <source [src]="vid.videoLink" />
+                  </video>
+                </div>
+                <div>
+                  <p>{{ vid.videoDescription }}</p>
+                </div>
+              </div>
             </div>
             <div>
-
               @if(role=='ROLE_INSTRUCTOR'){
-                <i               (click)="editCourse(courseDet, vid)"
-                class="fa-solid fa-pen-to-square fa-2xl">
-               </i>
+              <i
+                (click)="editCourse(courseDet, vid)"
+                class="fa-solid fa-pen-to-square fa-2xl"
+              >
+              </i>
               }
             </div>
           </div>
@@ -139,6 +163,6 @@
     }
   </div>
 </div>
-}
+
 
 <app-footer></app-footer>

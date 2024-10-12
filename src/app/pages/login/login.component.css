@@ -41,3 +41,28 @@
     border-radius: 10px;
     cursor: pointer;
 }
+
+
+
+.password-input{
+  width: 104%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.pwd
+
+{width: 112%;
+padding: 10px;
+/* border-radius: 9px; */
+height: 40px;
+/* text-indent: 20px; */
+border-radius: 10px;
+border: 1px solid gray;
+}
+
+.eye{
+  position: relative;
+    top: 12px;
+    right: 24px;
+}

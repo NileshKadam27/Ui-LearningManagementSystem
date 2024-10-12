@@ -12,8 +12,13 @@
             <p class="error">username is Required</p>
         }
 
-        <input [type]="passisActive ? 'password' : 'text'" placeholder="Enter Password" [formControl]="password">
-        <i (mousedown)="checkPassword()" (mouseup)="checkPassword()"  class="fa fa-eye" aria-hidden="true"></i>
+
+
+        <div class="password-input">
+          <input class="pwd" [type]="passisActive ? 'password' : 'text'" placeholder="Enter Password"  [formControl]="password" >
+          <i (mousedown)="checkPassword()" (mouseup)="checkPassword()"  class="fa fa-eye eye" aria-hidden="true"></i>
+
+        </div>
 
         @if(password.errors?.['required']==true && password.touched==true)
         {
