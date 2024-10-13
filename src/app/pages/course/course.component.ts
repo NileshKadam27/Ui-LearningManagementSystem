@@ -7,10 +7,17 @@ import { FooterComponent } from '../../components/footer/footer.component';
 import { LoaderComponent } from '../../components/loader/loader.component';
 import { CommonModule } from '@angular/common';
 import Chart from 'chart.js/auto';
-import {  BarElement, BarController, CategoryScale, Decimation, Filler, Legend, Title, Tooltip} from 'chart.js';
+import {
+  BarElement,
+  BarController,
+  CategoryScale,
+  Decimation,
+  Filler,
+  Legend,
+  Title,
+  Tooltip,
+} from 'chart.js';
 import { Dashboard, DashboardDetails } from '../../interfaces/Dashboard';
-
-
 
 @Component({
   selector: 'app-course',
@@ -29,10 +36,10 @@ export class CourseComponent {
   role: any = '';
   courseId: any;
   isLoading: boolean = false;
-  dashboardDetails:DashboardDetails[]=[];
-  courseNameList:any
-  studentCountList:any
-  
+  dashboardDetails: DashboardDetails[] = [];
+  courseNameList: any;
+  studentCountList: any;
+
   constructor(
     private http: HttpClient,
     private profService: ProfessorService,
@@ -41,23 +48,10 @@ export class CourseComponent {
   ) {}
 
   ngOnInit() {
-    this.createChart();
 
     this.role = localStorage.getItem('role');
-    if(this.role==='ROLE_INSTRUCTOR'){
-      this.profService.getDashboard().subscribe(res=>{
-        this.dashboardDetails = res.payload;
-        console.log(this.dashboardDetails )
-       this.dashboardDetails.map(d =>
-        this.courseNameList = d.courseName
-       );
-
-       this.studentCountList=this.dashboardDetails.map(d =>
-        d.numberStudentEnrolled);
-
-      });
-
-      console.log('course'+this.courseNameList)
+    if (this.role === 'ROLE_INSTRUCTOR') {
+      this.getDashboardDetails();
     }
     this.getToken();
     this.activatedRoute.queryParams.subscribe((params) => {
@@ -68,6 +62,26 @@ export class CourseComponent {
         this.getCoursesByRole();
       }
     });
+  }
+
+  getDashboardDetails() {
+    debugger
+    this.profService.getDashboard().subscribe((res) => {
+      this.dashboardDetails = res.payload;
+      console.log('das',this.dashboardDetails);
+      this.courseNameList = this.dashboardDetails.map((d) => d.courseName);
+      this.studentCountList = this.dashboardDetails.map(
+        (d) => d.numberStudentEnrolled
+
+      );
+      console.log('course' + this.courseNameList);
+      console.log('course' + this.studentCountList);
+
+      if(this.studentCountList &&  this.courseNameList){
+      this.createChart();
+      }
+    });
+
   }
 
   getCoursesByRole() {
@@ -89,17 +103,15 @@ export class CourseComponent {
   getCourseDetails(courseId: any) {
     this.role = localStorage.getItem('role');
 
-    if(this.courseId==='all'){
+    if (this.courseId === 'all') {
       this.route.navigate(['/coursedetails'], {
         queryParams: { courseId: courseId },
       });
+    } else {
+      this.route.navigate(['/viewcourse'], {
+        queryParams: { courseId: courseId },
+      });
     }
-
-    else{
-    this.route.navigate(['/viewcourse'], {
-      queryParams: { courseId: courseId },
-    });
-  }
   }
 
   getAllCourseWithoutLogin() {
@@ -111,10 +123,6 @@ export class CourseComponent {
     });
   }
 
-
-
-
-
   createChart() {
     const ctx = document.getElementById('enrollmentChart') as HTMLCanvasElement;
 
@@ -122,22 +130,39 @@ export class CourseComponent {
       type: 'bar',
       data: {
         labels: this.courseNameList,
-        datasets: [{
-          label: 'Enrollments',
-          data: this.studentCountList,
-          backgroundColor: 'rgba(75, 192, 192, 0.2)',
-          borderColor: 'rgba(75, 192, 192, 1)',
-          borderWidth: 1
-        }]
+        datasets: [
+          {
+            label: 'Students Enrolled',
+            data: this.studentCountList,
+            backgroundColor: 'rgb(105,105,105)',
+            borderColor: 'rgb(105,105,105)',
+            borderWidth: 1,
+            barThickness:40
+
+          },
+        ],
       },
       options: {
         scales: {
           y: {
-            beginAtZero: true
-          }
-        }
-      }
+            beginAtZero: true,
+            ticks: {
+              autoSkip: false, // Prevent scaling
+              maxTicksLimit: 1 // Control the number of ticks
+            }
+          },
+
+
+          x: {
+            stacked: true,
+
+            ticks: {
+              autoSkip: false, // Prevent scaling
+              maxTicksLimit: 1 // Control the number of ticks
+            }
+          },
+        },
+      },
     });
   }
 }
-

@@ -84,7 +84,7 @@
       (change)="onFileChange($event)"
       required
     />
-    <button type="submit" class="btn" (click)="updateCourse()">Update</button>
+    <button type="button" class="btn" (click)="updateCourse()">Update</button>
     <button type="button" class="btn" (click)="updateModalVisible = false">
       Cancel
     </button>
@@ -129,7 +129,7 @@
         <li>
           <div class="video">
             <div>
-              <h3 class="title">{{ vid.videoId }}.{{ vid.videoTitle }}</h3>
+              <h3 class="title">{{ vid.videoTitle }}</h3>
 
               <div class="video-view">
                 <div>

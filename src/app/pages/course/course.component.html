@@ -13,7 +13,12 @@
 
 <section class="chart">
 
-<canvas id="enrollmentChart" style="box-sizing: border-box;height: 100%;width: 100%;"></canvas>
+
+  <div class="canv">
+    <canvas id="enrollmentChart" ></canvas>
+
+  </div>
+
 
 
 
@@ -50,12 +55,12 @@
        <div class="add-course">
         <p> 500 Learners</p>
         <div>
-          <button  class="btn" >View </button>
+          <button  class="btn" >View Course </button>
         </div>
         @if(role==='ROLE_INSTRUCTOR'){
-          <div>
+          <!-- <div>
             <button  class="btn">Delete </button>
-          </div>
+          </div> -->
         }
 
        </div>

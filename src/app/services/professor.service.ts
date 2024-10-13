@@ -83,8 +83,8 @@ courseLitWithouLogin="http://localhost:8080/v1/course/details";
 
      }
 
-     getDashboard():Observable<Dashboard>{
-      return this.httpClient.get<Dashboard>(this.getDashboardUrl);
+     getDashboard():Observable<any>{
+      return this.httpClient.get(this.getDashboardUrl);
 
      }
 

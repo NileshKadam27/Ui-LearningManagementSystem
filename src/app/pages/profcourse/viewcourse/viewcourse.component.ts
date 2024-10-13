@@ -91,22 +91,10 @@ export class ViewcourseComponent {
 
 
   getCourses(){
-    this.isLoading=true
     console.log('dd', this.courseId)
     this.profService.getAllCourses(this.courseId).subscribe((response:any)=>{
         console.log(response);
         this.courses= response;
-        this.isLoading=false
-
-        this.courses=this.courses.map((ele)=>{
-          ele.courseDetailList.forEach((cdl:any)=>{
-          for(let i=0;i<cdl.videoBean.length-1;i++){
-         cdl.videoBean[i].videoId=i+1;
-        }
-      })
-      return ele;
-    });
-
   })
   }
   hideUpdateModal(event:any)
@@ -141,29 +129,24 @@ export class ViewcourseComponent {
     }
 
 
-
     updateCourse() {
-      console.log(this.currentCourseDet);
-
       const formData = new FormData();
-
-
+      console.log("videoFILE" + this.courseForm1.value.videoFile);
       console.log(this.courseForm1.value);
-
-formData.append("videoTitle",this.courseForm1.value.videoTitle);
-formData.append("videoDescription",this.courseForm1.value.videoDescription);
-formData.append("videoDuration",this.courseForm1.value.videoDuration);
-formData.append("videoFile",this.courseForm1.value.videoFile)
-        this.profService.updateCourse(this.currentCourseDet.courseId,this.currentCourseDet.videoBean[0].videoId,formData)
-        .subscribe((response)=>{
+      formData.append("videoTitle", this.courseForm1.value.videoTitle);
+      formData.append("videoDescription", this.courseForm1.value.videoDescription);
+      formData.append("videoDuration", this.courseForm1.value.videoDuration);
+      if (this.courseForm1.value.videoFile != null) {
+        formData.append("videoFile", this.courseForm1.value.videoFile);
+      }
+      this.profService.updateCourse(this.currentCourseDet.courseId, this.courseForm1.value.Id, formData)
+        .subscribe((response) => {
           console.log(response);
+          this.getCourses();
         })
 
       this.updateModalVisible = false
-
-
     }
-
     enableVideoDets(Id:any){
       console.log("enableVideoDets");
       this.addVideo =true;
