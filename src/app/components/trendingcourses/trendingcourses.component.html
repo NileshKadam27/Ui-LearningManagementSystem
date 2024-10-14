@@ -1,8 +1,10 @@
 <h1>Popular courses we offer</h1>
 <div class="card-section">
+
+  @for(c of trendingCourses;track c.id){
   <div class="card">
     <span class="badge"> Treding </span>
-    <h2>Devops Foundation</h2>
+    <h2>{{c.courseName}}</h2>
 
     <ul class="card-course-info">
       <li>16 Hours of Instructor-Led Training and Workshops</li>
@@ -11,48 +13,9 @@
       <li>Get Trained and Certified by Industry Experts.</li>
     </ul>
 
-    <div><button class="btn" type="submit">START LEARNING</button></div>
+    <div><button (click)="startLearning(c.courseId)" class="btn" type="submit">START LEARNING</button></div>
   </div>
-  <div class="card">
-    <span class="badge"> Treding </span>
-    <h2>Devops Foundation</h2>
-
-    <ul class="card-course-info">
-      <li>16 Hours of Instructor-Led Training and Workshops</li>
-      <li>Get Trained and Certified by Industry Experts.</li>
-      <li>Get Trained and Certified by Industry Experts.</li>
-      <li>Get Trained and Certified by Industry Experts.</li>
-    </ul>
-
-    <div><button class="btn" type="submit">START LEARNING</button></div>
-  </div>
-
-  <div class="card">
-    <span class="badge"> Treding </span>
-    <h2>Devops Foundation</h2>
-
-    <ul class="card-course-info">
-      <li>16 Hours of Instructor-Led Training and Workshops</li>
-      <li>Get Trained and Certified by Industry Experts.</li>
-      <li>Get Trained and Certified by Industry Experts.</li>
-      <li>Get Trained and Certified by Industry Experts.</li>
-    </ul>
-
-    <div><button class="btn" type="submit">START LEARNING</button></div>
-  </div>
-  <div class="card">
-    <span class="badge"> Treding </span>
-    <h2>Devops Foundation</h2>
-
-    <ul class="card-course-info">
-      <li>16 Hours of Instructor-Led Training and Workshops</li>
-      <li>Get Trained and Certified by Industry Experts.</li>
-      <li>Get Trained and Certified by Industry Experts.</li>
-      <li>Get Trained and Certified by Industry Experts.</li>
-    </ul>
-
-    <div><button class="btn" type="submit">START LEARNING</button></div>
-  </div>
+}
 </div>
 
 

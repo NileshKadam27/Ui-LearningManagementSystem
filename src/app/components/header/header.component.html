@@ -9,15 +9,15 @@
       <i class="fa-solid fa-list"></i> Courses
     </button>
     <div class="navlinks">
-      <p (click)="scrollToAboutUs()">About us</p>
+      <p class="focused"  (click)="scrollToAboutUs()">About us</p>
       @if(isLogin){
         @if(role==='ROLE_STUDENT'){
-          <p (click)="mycourse()"> My Courses
+          <p class="focused" (click)="mycourse()"> My Courses
           </p>
         }
         @if(role==='ROLE_INSTRUCTOR'){
-          <p (click)="viewCourse()"> View courses</p>
-          <p (click)="addCourse()"> Add course</p>
+          <p  class="focused"(click)="viewCourse()"> View courses</p>
+          <p class="focused" (click)="addCourse()"> Add course</p>
         }
         <div class="profile-logo">
           <div>

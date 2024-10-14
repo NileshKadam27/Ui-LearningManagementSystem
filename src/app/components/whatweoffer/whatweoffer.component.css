@@ -12,7 +12,7 @@
 
 .card{
   width: 25%;
-  height: 400px;
+  height: 500px;
   background-color: rgb(245 245 245);
   border-radius: 5px;
   /* padding: 21px; */
@@ -57,6 +57,7 @@ ul{
 
 h1{
   padding-top: 40px;
+  font-size: xx-large;
   text-align: center;
 }
 

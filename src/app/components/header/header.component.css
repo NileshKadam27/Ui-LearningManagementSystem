@@ -135,3 +135,11 @@ p{
   width: 150px;
   height: 150px;
 }
+
+
+.navlinks :hover{
+  color: rgb(8, 7, 7);
+  font-weight: 500;
+
+
+}
